@@ -67,7 +67,7 @@ namespace nguyenvancu.Layer.Admin.accept.bodycontent
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "Script", "swal('Đã có tên này trong danh mục!','', 'error');", true);
                 return;
             }
-            menus = src.menus.Find(DropDownList1.SelectedValue);
+            menus = src.menus.Find(int.Parse(DropDownList1.SelectedValue));
             menus.names = txtmenu1.Text;
             menus.lv = 1;
             src.SaveChanges();
@@ -108,7 +108,7 @@ namespace nguyenvancu.Layer.Admin.accept.bodycontent
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "Script", "swal('Đã có tên này trong danh mục!','', 'error');", true);
                 return;
             }
-            menus = src.menus.Find(DropDownList2.SelectedValue);
+            menus = src.menus.Find(int.Parse(DropDownList2.SelectedValue));
             menus.names = txtmenu2.Text;
             menus.lv = 2;
             menus.menuownerid = int.Parse(DropDownList1.SelectedValue);
@@ -150,7 +150,7 @@ namespace nguyenvancu.Layer.Admin.accept.bodycontent
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "Script", "swal('Đã có tên này trong danh mục!','', 'error');", true);
                 return;
             }
-            menus = src.menus.Find(DropDownList3.SelectedValue);
+            menus = src.menus.Find(int.Parse(DropDownList3.SelectedValue));
             menus.names = txtmenu3.Text;
             menus.lv = 3;
             menus.menuownerid = int.Parse(DropDownList2.SelectedValue);
@@ -192,7 +192,7 @@ namespace nguyenvancu.Layer.Admin.accept.bodycontent
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "Script", "swal('Đã có tên này trong danh mục!','', 'error');", true);
                 return;
             }
-            menus = src.menus.Find(DropDownList4.SelectedValue);
+            menus = src.menus.Find(int.Parse(DropDownList4.SelectedValue));
             menus.names = txtmenu4.Text;
             menus.lv = 4;
             menus.menuownerid = int.Parse(DropDownList3.SelectedValue);
