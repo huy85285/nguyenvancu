@@ -1,0 +1,1357 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="nguyenvancudbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ADMINS">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="passwords" Type="varbinary" MaxLength="64" />
+          <Property Name="passwords_salt" Type="varbinary" MaxLength="64" />
+          <Property Name="lastname" Type="varchar" MaxLength="32" />
+          <Property Name="firstname" Type="varchar" MaxLength="10" />
+          <Property Name="addressid" Type="nvarchar" MaxLength="100" />
+          <Property Name="phone" Type="varchar" MaxLength="15" />
+          <Property Name="email" Type="varchar" MaxLength="32" />
+          <Property Name="idrank" Type="int" />
+          <Property Name="date_create" Type="datetime" />
+          <Property Name="admin_create" Type="varchar" MaxLength="16" />
+          <Property Name="is_active" Type="bit" Nullable="false" />
+          <Property Name="idImg" Type="int" />
+        </EntityType>
+        <EntityType Name="cart">
+          <Key>
+            <PropertyRef Name="iduser" />
+            <PropertyRef Name="idproduct" />
+          </Key>
+          <Property Name="iduser" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="idproduct" Type="int" Nullable="false" />
+          <Property Name="COUNT" Type="int" />
+        </EntityType>
+        <EntityType Name="COMMENT">
+          <Key>
+            <PropertyRef Name="idproduct" />
+            <PropertyRef Name="iduser" />
+          </Key>
+          <Property Name="idproduct" Type="int" Nullable="false" />
+          <Property Name="iduser" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="RATE" Type="float" Nullable="false" />
+          <Property Name="COMMENT" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="company">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idcontent" Type="int" Nullable="false" />
+          <Property Name="idImg" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CONTENT">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="16" />
+          <Property Name="texts" Type="nvarchar" MaxLength="1000" />
+          <Property Name="IDADMINS" Type="varchar" MaxLength="16" Nullable="false" />
+        </EntityType>
+        <EntityType Name="detailhistorycart">
+          <Key>
+            <PropertyRef Name="idhistorycart" />
+            <PropertyRef Name="idproduct" />
+          </Key>
+          <Property Name="idhistorycart" Type="int" Nullable="false" />
+          <Property Name="idproduct" Type="int" Nullable="false" />
+          <Property Name="COUNT" Type="int" />
+        </EntityType>
+        <EntityType Name="detailproduct">
+          <Key>
+            <PropertyRef Name="idproduct" />
+            <PropertyRef Name="idproperties" />
+          </Key>
+          <Property Name="idproduct" Type="int" Nullable="false" />
+          <Property Name="idproperties" Type="int" Nullable="false" />
+          <Property Name="datas" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="history">
+          <Key>
+            <PropertyRef Name="iduser" />
+            <PropertyRef Name="idproduct" />
+          </Key>
+          <Property Name="iduser" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="idproduct" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="historycart">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="iduser" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="datecart" Type="date" Nullable="false" />
+          <Property Name="iscomplete" Type="bit" />
+        </EntityType>
+        <EntityType Name="IMG">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="link" Type="varchar" MaxLength="100" />
+          <Property Name="ten" Type="nvarchar" MaxLength="50" />
+          <Property Name="owner_id" Type="varchar" MaxLength="100" />
+          <Property Name="tableowner" Type="varchar" MaxLength="100" />
+          <Property Name="mota" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LIST_IMG">
+          <Key>
+            <PropertyRef Name="idproduct" />
+            <PropertyRef Name="idImg" />
+          </Key>
+          <Property Name="idproduct" Type="int" Nullable="false" />
+          <Property Name="idImg" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="menu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="names" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="is_active" Type="bit" Nullable="false" />
+          <Property Name="lv" Type="int" Nullable="false" />
+          <Property Name="menuownerid" Type="int" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="names" Type="nvarchar" MaxLength="30" />
+          <Property Name="price" Type="int" />
+          <Property Name="ispromotion" Type="bit" />
+          <Property Name="price_promotion" Type="int" />
+          <Property Name="is_available" Type="bit" />
+          <Property Name="idcontent" Type="int" Nullable="false" />
+          <Property Name="idmenu" Type="int" />
+          <Property Name="idcompany" Type="int" />
+          <Property Name="idADMINSLASTMDF" Type="varchar" MaxLength="16" />
+        </EntityType>
+        <EntityType Name="properties">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="names" Type="nvarchar" MaxLength="16" />
+        </EntityType>
+        <EntityType Name="rank">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="names" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="USERS">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="passwords" Type="varchar" MaxLength="32" />
+          <Property Name="lastname" Type="varchar" MaxLength="32" />
+          <Property Name="firstname" Type="varchar" MaxLength="10" />
+          <Property Name="addressid" Type="nvarchar" MaxLength="100" />
+          <Property Name="phone" Type="varchar" MaxLength="15" />
+          <Property Name="email" Type="varchar" MaxLength="32" />
+          <Property Name="rank" Type="nvarchar" MaxLength="20" />
+          <Property Name="datecreate" Type="datetime" />
+          <Property Name="is_active" Type="bit" Nullable="false" />
+          <Property Name="idImg" Type="int" />
+        </EntityType>
+        <Association Name="FK_ADMINS_ADMINS">
+          <End Role="ADMINS" Type="Self.ADMINS" Multiplicity="0..1" />
+          <End Role="ADMINS1" Type="Self.ADMINS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ADMINS">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ADMINS1">
+              <PropertyRef Name="admin_create" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ADMINS_CONTENT">
+          <End Role="ADMINS" Type="Self.ADMINS" Multiplicity="1" />
+          <End Role="CONTENT" Type="Self.CONTENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ADMINS">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CONTENT">
+              <PropertyRef Name="IDADMINS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ADMINS_product">
+          <End Role="ADMINS" Type="Self.ADMINS" Multiplicity="0..1" />
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ADMINS">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="idADMINSLASTMDF" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_company_product">
+          <End Role="company" Type="Self.company" Multiplicity="0..1" />
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="company">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="idcompany" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CONTENT_company">
+          <End Role="CONTENT" Type="Self.CONTENT" Multiplicity="1" />
+          <End Role="company" Type="Self.company" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONTENT">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="company">
+              <PropertyRef Name="idcontent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CONTENT_product">
+          <End Role="CONTENT" Type="Self.CONTENT" Multiplicity="1" />
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONTENT">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="idcontent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_historycart_detailhistorycart">
+          <End Role="historycart" Type="Self.historycart" Multiplicity="1" />
+          <End Role="detailhistorycart" Type="Self.detailhistorycart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="historycart">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="detailhistorycart">
+              <PropertyRef Name="idhistorycart" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Img_ADMINS">
+          <End Role="IMG" Type="Self.IMG" Multiplicity="0..1" />
+          <End Role="ADMINS" Type="Self.ADMINS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IMG">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ADMINS">
+              <PropertyRef Name="idImg" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Img_company">
+          <End Role="IMG" Type="Self.IMG" Multiplicity="1" />
+          <End Role="company" Type="Self.company" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IMG">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="company">
+              <PropertyRef Name="idImg" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Img_LISTIMG">
+          <End Role="IMG" Type="Self.IMG" Multiplicity="1" />
+          <End Role="LIST_IMG" Type="Self.LIST_IMG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IMG">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="LIST_IMG">
+              <PropertyRef Name="idImg" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Img_USERS">
+          <End Role="IMG" Type="Self.IMG" Multiplicity="0..1" />
+          <End Role="USERS" Type="Self.USERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IMG">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="USERS">
+              <PropertyRef Name="idImg" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_menu_menu">
+          <End Role="menu" Type="Self.menu" Multiplicity="0..1" />
+          <End Role="menu1" Type="Self.menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="menu">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="menu1">
+              <PropertyRef Name="menuownerid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_menu_product">
+          <End Role="menu" Type="Self.menu" Multiplicity="0..1" />
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="menu">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="idmenu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_product_cart">
+          <End Role="product" Type="Self.product" Multiplicity="1" />
+          <End Role="cart" Type="Self.cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cart">
+              <PropertyRef Name="idproduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_product_COMMENT">
+          <End Role="product" Type="Self.product" Multiplicity="1" />
+          <End Role="COMMENT" Type="Self.COMMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="COMMENT">
+              <PropertyRef Name="idproduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_product_detailhistorycart">
+          <End Role="product" Type="Self.product" Multiplicity="1" />
+          <End Role="detailhistorycart" Type="Self.detailhistorycart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="detailhistorycart">
+              <PropertyRef Name="idproduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_product_detailproduct">
+          <End Role="product" Type="Self.product" Multiplicity="1" />
+          <End Role="detailproduct" Type="Self.detailproduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="detailproduct">
+              <PropertyRef Name="idproduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_product_history">
+          <End Role="product" Type="Self.product" Multiplicity="1" />
+          <End Role="history" Type="Self.history" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="history">
+              <PropertyRef Name="idproduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_product_LISTIMG">
+          <End Role="product" Type="Self.product" Multiplicity="1" />
+          <End Role="LIST_IMG" Type="Self.LIST_IMG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="LIST_IMG">
+              <PropertyRef Name="idproduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_properties_detailproduct">
+          <End Role="properties" Type="Self.properties" Multiplicity="1" />
+          <End Role="detailproduct" Type="Self.detailproduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="properties">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="detailproduct">
+              <PropertyRef Name="idproperties" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_rank_ADMINS">
+          <End Role="rank" Type="Self.rank" Multiplicity="0..1" />
+          <End Role="ADMINS" Type="Self.ADMINS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rank">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ADMINS">
+              <PropertyRef Name="idrank" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_user_cart">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+          <End Role="cart" Type="Self.cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cart">
+              <PropertyRef Name="iduser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_COMMENT">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+          <End Role="COMMENT" Type="Self.COMMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="COMMENT">
+              <PropertyRef Name="iduser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_user_history">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+          <End Role="history" Type="Self.history" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="history">
+              <PropertyRef Name="iduser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_user_historycart">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+          <End Role="historycart" Type="Self.historycart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="historycart">
+              <PropertyRef Name="iduser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="nguyenvancudbModelStoreContainer">
+          <EntitySet Name="ADMINS" EntityType="Self.ADMINS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cart" EntityType="Self.cart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="COMMENT" EntityType="Self.COMMENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="company" EntityType="Self.company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CONTENT" EntityType="Self.CONTENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="detailhistorycart" EntityType="Self.detailhistorycart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="detailproduct" EntityType="Self.detailproduct" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="history" EntityType="Self.history" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="historycart" EntityType="Self.historycart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IMG" EntityType="Self.IMG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LIST_IMG" EntityType="Self.LIST_IMG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="menu" EntityType="Self.menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="product" EntityType="Self.product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="properties" EntityType="Self.properties" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="rank" EntityType="Self.rank" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ADMINS_ADMINS" Association="Self.FK_ADMINS_ADMINS">
+            <End Role="ADMINS" EntitySet="ADMINS" />
+            <End Role="ADMINS1" EntitySet="ADMINS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ADMINS_CONTENT" Association="Self.FK_ADMINS_CONTENT">
+            <End Role="ADMINS" EntitySet="ADMINS" />
+            <End Role="CONTENT" EntitySet="CONTENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ADMINS_product" Association="Self.FK_ADMINS_product">
+            <End Role="ADMINS" EntitySet="ADMINS" />
+            <End Role="product" EntitySet="product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_company_product" Association="Self.FK_company_product">
+            <End Role="company" EntitySet="company" />
+            <End Role="product" EntitySet="product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CONTENT_company" Association="Self.FK_CONTENT_company">
+            <End Role="CONTENT" EntitySet="CONTENT" />
+            <End Role="company" EntitySet="company" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CONTENT_product" Association="Self.FK_CONTENT_product">
+            <End Role="CONTENT" EntitySet="CONTENT" />
+            <End Role="product" EntitySet="product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_historycart_detailhistorycart" Association="Self.FK_historycart_detailhistorycart">
+            <End Role="historycart" EntitySet="historycart" />
+            <End Role="detailhistorycart" EntitySet="detailhistorycart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Img_ADMINS" Association="Self.FK_Img_ADMINS">
+            <End Role="IMG" EntitySet="IMG" />
+            <End Role="ADMINS" EntitySet="ADMINS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Img_company" Association="Self.FK_Img_company">
+            <End Role="IMG" EntitySet="IMG" />
+            <End Role="company" EntitySet="company" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Img_LISTIMG" Association="Self.FK_Img_LISTIMG">
+            <End Role="IMG" EntitySet="IMG" />
+            <End Role="LIST_IMG" EntitySet="LIST_IMG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Img_USERS" Association="Self.FK_Img_USERS">
+            <End Role="IMG" EntitySet="IMG" />
+            <End Role="USERS" EntitySet="USERS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_menu_menu" Association="Self.FK_menu_menu">
+            <End Role="menu" EntitySet="menu" />
+            <End Role="menu1" EntitySet="menu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_menu_product" Association="Self.FK_menu_product">
+            <End Role="menu" EntitySet="menu" />
+            <End Role="product" EntitySet="product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_product_cart" Association="Self.FK_product_cart">
+            <End Role="product" EntitySet="product" />
+            <End Role="cart" EntitySet="cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_product_COMMENT" Association="Self.FK_product_COMMENT">
+            <End Role="product" EntitySet="product" />
+            <End Role="COMMENT" EntitySet="COMMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_product_detailhistorycart" Association="Self.FK_product_detailhistorycart">
+            <End Role="product" EntitySet="product" />
+            <End Role="detailhistorycart" EntitySet="detailhistorycart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_product_detailproduct" Association="Self.FK_product_detailproduct">
+            <End Role="product" EntitySet="product" />
+            <End Role="detailproduct" EntitySet="detailproduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_product_history" Association="Self.FK_product_history">
+            <End Role="product" EntitySet="product" />
+            <End Role="history" EntitySet="history" />
+          </AssociationSet>
+          <AssociationSet Name="FK_product_LISTIMG" Association="Self.FK_product_LISTIMG">
+            <End Role="product" EntitySet="product" />
+            <End Role="LIST_IMG" EntitySet="LIST_IMG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_properties_detailproduct" Association="Self.FK_properties_detailproduct">
+            <End Role="properties" EntitySet="properties" />
+            <End Role="detailproduct" EntitySet="detailproduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_rank_ADMINS" Association="Self.FK_rank_ADMINS">
+            <End Role="rank" EntitySet="rank" />
+            <End Role="ADMINS" EntitySet="ADMINS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_user_cart" Association="Self.FK_user_cart">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="cart" EntitySet="cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_COMMENT" Association="Self.FK_USER_COMMENT">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="COMMENT" EntitySet="COMMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_user_history" Association="Self.FK_user_history">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="history" EntitySet="history" />
+          </AssociationSet>
+          <AssociationSet Name="FK_user_historycart" Association="Self.FK_user_historycart">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="historycart" EntitySet="historycart" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="nguyenvancudbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ADMIN">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="passwords" Type="Binary" MaxLength="64" FixedLength="false" />
+          <Property Name="passwords_salt" Type="Binary" MaxLength="64" FixedLength="false" />
+          <Property Name="lastname" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="firstname" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="addressid" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="idrank" Type="Int32" />
+          <Property Name="date_create" Type="DateTime" Precision="3" />
+          <Property Name="admin_create" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="is_active" Type="Boolean" Nullable="false" />
+          <Property Name="idImg" Type="Int32" />
+          <NavigationProperty Name="ADMINS1" Relationship="Self.FK_ADMINS_ADMINS" FromRole="ADMINS" ToRole="ADMINS1" />
+          <NavigationProperty Name="ADMIN1" Relationship="Self.FK_ADMINS_ADMINS" FromRole="ADMINS1" ToRole="ADMINS" />
+          <NavigationProperty Name="CONTENTs" Relationship="Self.FK_ADMINS_CONTENT" FromRole="ADMINS" ToRole="CONTENT" />
+          <NavigationProperty Name="products" Relationship="Self.FK_ADMINS_product" FromRole="ADMINS" ToRole="product" />
+          <NavigationProperty Name="IMG" Relationship="Self.FK_Img_ADMINS" FromRole="ADMINS" ToRole="IMG" />
+          <NavigationProperty Name="rank" Relationship="Self.FK_rank_ADMINS" FromRole="ADMINS" ToRole="rank" />
+        </EntityType>
+        <EntityType Name="cart">
+          <Key>
+            <PropertyRef Name="iduser" />
+            <PropertyRef Name="idproduct" />
+          </Key>
+          <Property Name="iduser" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idproduct" Type="Int32" Nullable="false" />
+          <Property Name="COUNT" Type="Int32" />
+          <NavigationProperty Name="product" Relationship="Self.FK_product_cart" FromRole="cart" ToRole="product" />
+          <NavigationProperty Name="USER" Relationship="Self.FK_user_cart" FromRole="cart" ToRole="USERS" />
+        </EntityType>
+        <EntityType Name="COMMENT">
+          <Key>
+            <PropertyRef Name="idproduct" />
+            <PropertyRef Name="iduser" />
+          </Key>
+          <Property Name="idproduct" Type="Int32" Nullable="false" />
+          <Property Name="iduser" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RATE" Type="Double" Nullable="false" />
+          <Property Name="COMMENT1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="product" Relationship="Self.FK_product_COMMENT" FromRole="COMMENT" ToRole="product" />
+          <NavigationProperty Name="USER" Relationship="Self.FK_USER_COMMENT" FromRole="COMMENT" ToRole="USERS" />
+        </EntityType>
+        <EntityType Name="company">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idcontent" Type="Int32" Nullable="false" />
+          <Property Name="idImg" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="products" Relationship="Self.FK_company_product" FromRole="company" ToRole="product" />
+          <NavigationProperty Name="CONTENT" Relationship="Self.FK_CONTENT_company" FromRole="company" ToRole="CONTENT" />
+          <NavigationProperty Name="IMG" Relationship="Self.FK_Img_company" FromRole="company" ToRole="IMG" />
+        </EntityType>
+        <EntityType Name="CONTENT">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="texts" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="IDADMINS" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ADMIN" Relationship="Self.FK_ADMINS_CONTENT" FromRole="CONTENT" ToRole="ADMINS" />
+          <NavigationProperty Name="companies" Relationship="Self.FK_CONTENT_company" FromRole="CONTENT" ToRole="company" />
+          <NavigationProperty Name="products" Relationship="Self.FK_CONTENT_product" FromRole="CONTENT" ToRole="product" />
+        </EntityType>
+        <EntityType Name="detailhistorycart">
+          <Key>
+            <PropertyRef Name="idhistorycart" />
+            <PropertyRef Name="idproduct" />
+          </Key>
+          <Property Name="idhistorycart" Type="Int32" Nullable="false" />
+          <Property Name="idproduct" Type="Int32" Nullable="false" />
+          <Property Name="COUNT" Type="Int32" />
+          <NavigationProperty Name="historycart" Relationship="Self.FK_historycart_detailhistorycart" FromRole="detailhistorycart" ToRole="historycart" />
+          <NavigationProperty Name="product" Relationship="Self.FK_product_detailhistorycart" FromRole="detailhistorycart" ToRole="product" />
+        </EntityType>
+        <EntityType Name="detailproduct">
+          <Key>
+            <PropertyRef Name="idproduct" />
+            <PropertyRef Name="idproperties" />
+          </Key>
+          <Property Name="idproduct" Type="Int32" Nullable="false" />
+          <Property Name="idproperties" Type="Int32" Nullable="false" />
+          <Property Name="datas" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="product" Relationship="Self.FK_product_detailproduct" FromRole="detailproduct" ToRole="product" />
+          <NavigationProperty Name="property" Relationship="Self.FK_properties_detailproduct" FromRole="detailproduct" ToRole="properties" />
+        </EntityType>
+        <EntityType Name="historycart">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="iduser" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="datecart" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="iscomplete" Type="Boolean" />
+          <NavigationProperty Name="detailhistorycarts" Relationship="Self.FK_historycart_detailhistorycart" FromRole="historycart" ToRole="detailhistorycart" />
+          <NavigationProperty Name="USER" Relationship="Self.FK_user_historycart" FromRole="historycart" ToRole="USERS" />
+        </EntityType>
+        <EntityType Name="IMG">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="link" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="owner_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="tableowner" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="mota" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ADMINS" Relationship="Self.FK_Img_ADMINS" FromRole="IMG" ToRole="ADMINS" />
+          <NavigationProperty Name="companies" Relationship="Self.FK_Img_company" FromRole="IMG" ToRole="company" />
+          <NavigationProperty Name="USERS" Relationship="Self.FK_Img_USERS" FromRole="IMG" ToRole="USERS" />
+          <NavigationProperty Name="products" Relationship="Self.LIST_IMG" FromRole="IMG" ToRole="product" />
+        </EntityType>
+        <EntityType Name="menu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="names" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="is_active" Type="Boolean" Nullable="false" />
+          <Property Name="lv" Type="Int32" Nullable="false" />
+          <Property Name="menuownerid" Type="Int32" />
+          <NavigationProperty Name="menu1" Relationship="Self.FK_menu_menu" FromRole="menu" ToRole="menu1" />
+          <NavigationProperty Name="menu2" Relationship="Self.FK_menu_menu" FromRole="menu1" ToRole="menu" />
+          <NavigationProperty Name="products" Relationship="Self.FK_menu_product" FromRole="menu" ToRole="product" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="names" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="Int32" />
+          <Property Name="ispromotion" Type="Boolean" />
+          <Property Name="price_promotion" Type="Int32" />
+          <Property Name="is_available" Type="Boolean" />
+          <Property Name="idcontent" Type="Int32" Nullable="false" />
+          <Property Name="idmenu" Type="Int32" />
+          <Property Name="idcompany" Type="Int32" />
+          <Property Name="idADMINSLASTMDF" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ADMIN" Relationship="Self.FK_ADMINS_product" FromRole="product" ToRole="ADMINS" />
+          <NavigationProperty Name="carts" Relationship="Self.FK_product_cart" FromRole="product" ToRole="cart" />
+          <NavigationProperty Name="COMMENTs" Relationship="Self.FK_product_COMMENT" FromRole="product" ToRole="COMMENT" />
+          <NavigationProperty Name="company" Relationship="Self.FK_company_product" FromRole="product" ToRole="company" />
+          <NavigationProperty Name="CONTENT" Relationship="Self.FK_CONTENT_product" FromRole="product" ToRole="CONTENT" />
+          <NavigationProperty Name="detailhistorycarts" Relationship="Self.FK_product_detailhistorycart" FromRole="product" ToRole="detailhistorycart" />
+          <NavigationProperty Name="detailproducts" Relationship="Self.FK_product_detailproduct" FromRole="product" ToRole="detailproduct" />
+          <NavigationProperty Name="menu" Relationship="Self.FK_menu_product" FromRole="product" ToRole="menu" />
+          <NavigationProperty Name="USERS" Relationship="Self.history" FromRole="product" ToRole="USERS" />
+          <NavigationProperty Name="IMGs" Relationship="Self.LIST_IMG" FromRole="product" ToRole="IMG" />
+        </EntityType>
+        <EntityType Name="property">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="names" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="detailproducts" Relationship="Self.FK_properties_detailproduct" FromRole="properties" ToRole="detailproduct" />
+        </EntityType>
+        <EntityType Name="rank">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="names" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ADMINS" Relationship="Self.FK_rank_ADMINS" FromRole="rank" ToRole="ADMINS" />
+        </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="passwords" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="lastname" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="firstname" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="addressid" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="rank" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="datecreate" Type="DateTime" Precision="3" />
+          <Property Name="is_active" Type="Boolean" Nullable="false" />
+          <Property Name="idImg" Type="Int32" />
+          <NavigationProperty Name="carts" Relationship="Self.FK_user_cart" FromRole="USERS" ToRole="cart" />
+          <NavigationProperty Name="COMMENTs" Relationship="Self.FK_USER_COMMENT" FromRole="USERS" ToRole="COMMENT" />
+          <NavigationProperty Name="historycarts" Relationship="Self.FK_user_historycart" FromRole="USERS" ToRole="historycart" />
+          <NavigationProperty Name="IMG" Relationship="Self.FK_Img_USERS" FromRole="USERS" ToRole="IMG" />
+          <NavigationProperty Name="products" Relationship="Self.history" FromRole="USERS" ToRole="product" />
+        </EntityType>
+        <Association Name="FK_ADMINS_ADMINS">
+          <End Role="ADMINS" Type="Self.ADMIN" Multiplicity="0..1" />
+          <End Role="ADMINS1" Type="Self.ADMIN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ADMINS">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ADMINS1">
+              <PropertyRef Name="admin_create" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ADMINS_CONTENT">
+          <End Role="ADMINS" Type="Self.ADMIN" Multiplicity="1" />
+          <End Role="CONTENT" Type="Self.CONTENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ADMINS">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CONTENT">
+              <PropertyRef Name="IDADMINS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ADMINS_product">
+          <End Role="ADMINS" Type="Self.ADMIN" Multiplicity="0..1" />
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ADMINS">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="idADMINSLASTMDF" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Img_ADMINS">
+          <End Role="IMG" Type="Self.IMG" Multiplicity="0..1" />
+          <End Role="ADMINS" Type="Self.ADMIN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IMG">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ADMINS">
+              <PropertyRef Name="idImg" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_rank_ADMINS">
+          <End Role="rank" Type="Self.rank" Multiplicity="0..1" />
+          <End Role="ADMINS" Type="Self.ADMIN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rank">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ADMINS">
+              <PropertyRef Name="idrank" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_product_cart">
+          <End Role="product" Type="Self.product" Multiplicity="1" />
+          <End Role="cart" Type="Self.cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cart">
+              <PropertyRef Name="idproduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_user_cart">
+          <End Role="USERS" Type="Self.USER" Multiplicity="1" />
+          <End Role="cart" Type="Self.cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cart">
+              <PropertyRef Name="iduser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_product_COMMENT">
+          <End Role="product" Type="Self.product" Multiplicity="1" />
+          <End Role="COMMENT" Type="Self.COMMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="COMMENT">
+              <PropertyRef Name="idproduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_COMMENT">
+          <End Role="USERS" Type="Self.USER" Multiplicity="1" />
+          <End Role="COMMENT" Type="Self.COMMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="COMMENT">
+              <PropertyRef Name="iduser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_company_product">
+          <End Role="company" Type="Self.company" Multiplicity="0..1" />
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="company">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="idcompany" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CONTENT_company">
+          <End Role="CONTENT" Type="Self.CONTENT" Multiplicity="1" />
+          <End Role="company" Type="Self.company" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONTENT">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="company">
+              <PropertyRef Name="idcontent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Img_company">
+          <End Role="IMG" Type="Self.IMG" Multiplicity="1" />
+          <End Role="company" Type="Self.company" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IMG">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="company">
+              <PropertyRef Name="idImg" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CONTENT_product">
+          <End Role="CONTENT" Type="Self.CONTENT" Multiplicity="1" />
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONTENT">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="idcontent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_historycart_detailhistorycart">
+          <End Role="historycart" Type="Self.historycart" Multiplicity="1" />
+          <End Role="detailhistorycart" Type="Self.detailhistorycart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="historycart">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="detailhistorycart">
+              <PropertyRef Name="idhistorycart" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_product_detailhistorycart">
+          <End Role="product" Type="Self.product" Multiplicity="1" />
+          <End Role="detailhistorycart" Type="Self.detailhistorycart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="detailhistorycart">
+              <PropertyRef Name="idproduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_product_detailproduct">
+          <End Role="product" Type="Self.product" Multiplicity="1" />
+          <End Role="detailproduct" Type="Self.detailproduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="detailproduct">
+              <PropertyRef Name="idproduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_properties_detailproduct">
+          <End Role="properties" Type="Self.property" Multiplicity="1" />
+          <End Role="detailproduct" Type="Self.detailproduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="properties">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="detailproduct">
+              <PropertyRef Name="idproperties" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_user_historycart">
+          <End Role="USERS" Type="Self.USER" Multiplicity="1" />
+          <End Role="historycart" Type="Self.historycart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="historycart">
+              <PropertyRef Name="iduser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Img_USERS">
+          <End Role="IMG" Type="Self.IMG" Multiplicity="0..1" />
+          <End Role="USERS" Type="Self.USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IMG">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="USERS">
+              <PropertyRef Name="idImg" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_menu_menu">
+          <End Role="menu" Type="Self.menu" Multiplicity="0..1" />
+          <End Role="menu1" Type="Self.menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="menu">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="menu1">
+              <PropertyRef Name="menuownerid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_menu_product">
+          <End Role="menu" Type="Self.menu" Multiplicity="0..1" />
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="menu">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="idmenu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="history">
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <End Role="USERS" Type="Self.USER" Multiplicity="*" />
+        </Association>
+        <Association Name="LIST_IMG">
+          <End Role="IMG" Type="Self.IMG" Multiplicity="*" />
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="nguyenvancudbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ADMINS" EntityType="Self.ADMIN" />
+          <EntitySet Name="carts" EntityType="Self.cart" />
+          <EntitySet Name="COMMENTs" EntityType="Self.COMMENT" />
+          <EntitySet Name="companies" EntityType="Self.company" />
+          <EntitySet Name="CONTENTs" EntityType="Self.CONTENT" />
+          <EntitySet Name="detailhistorycarts" EntityType="Self.detailhistorycart" />
+          <EntitySet Name="detailproducts" EntityType="Self.detailproduct" />
+          <EntitySet Name="historycarts" EntityType="Self.historycart" />
+          <EntitySet Name="IMGs" EntityType="Self.IMG" />
+          <EntitySet Name="menus" EntityType="Self.menu" />
+          <EntitySet Name="products" EntityType="Self.product" />
+          <EntitySet Name="properties" EntityType="Self.property" />
+          <EntitySet Name="ranks" EntityType="Self.rank" />
+          <EntitySet Name="USERS" EntityType="Self.USER" />
+          <AssociationSet Name="FK_ADMINS_ADMINS" Association="Self.FK_ADMINS_ADMINS">
+            <End Role="ADMINS" EntitySet="ADMINS" />
+            <End Role="ADMINS1" EntitySet="ADMINS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ADMINS_CONTENT" Association="Self.FK_ADMINS_CONTENT">
+            <End Role="ADMINS" EntitySet="ADMINS" />
+            <End Role="CONTENT" EntitySet="CONTENTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ADMINS_product" Association="Self.FK_ADMINS_product">
+            <End Role="ADMINS" EntitySet="ADMINS" />
+            <End Role="product" EntitySet="products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Img_ADMINS" Association="Self.FK_Img_ADMINS">
+            <End Role="IMG" EntitySet="IMGs" />
+            <End Role="ADMINS" EntitySet="ADMINS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_rank_ADMINS" Association="Self.FK_rank_ADMINS">
+            <End Role="rank" EntitySet="ranks" />
+            <End Role="ADMINS" EntitySet="ADMINS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_product_cart" Association="Self.FK_product_cart">
+            <End Role="product" EntitySet="products" />
+            <End Role="cart" EntitySet="carts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_user_cart" Association="Self.FK_user_cart">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="cart" EntitySet="carts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_product_COMMENT" Association="Self.FK_product_COMMENT">
+            <End Role="product" EntitySet="products" />
+            <End Role="COMMENT" EntitySet="COMMENTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_COMMENT" Association="Self.FK_USER_COMMENT">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="COMMENT" EntitySet="COMMENTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_company_product" Association="Self.FK_company_product">
+            <End Role="company" EntitySet="companies" />
+            <End Role="product" EntitySet="products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CONTENT_company" Association="Self.FK_CONTENT_company">
+            <End Role="CONTENT" EntitySet="CONTENTs" />
+            <End Role="company" EntitySet="companies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Img_company" Association="Self.FK_Img_company">
+            <End Role="IMG" EntitySet="IMGs" />
+            <End Role="company" EntitySet="companies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CONTENT_product" Association="Self.FK_CONTENT_product">
+            <End Role="CONTENT" EntitySet="CONTENTs" />
+            <End Role="product" EntitySet="products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_historycart_detailhistorycart" Association="Self.FK_historycart_detailhistorycart">
+            <End Role="historycart" EntitySet="historycarts" />
+            <End Role="detailhistorycart" EntitySet="detailhistorycarts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_product_detailhistorycart" Association="Self.FK_product_detailhistorycart">
+            <End Role="product" EntitySet="products" />
+            <End Role="detailhistorycart" EntitySet="detailhistorycarts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_product_detailproduct" Association="Self.FK_product_detailproduct">
+            <End Role="product" EntitySet="products" />
+            <End Role="detailproduct" EntitySet="detailproducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_properties_detailproduct" Association="Self.FK_properties_detailproduct">
+            <End Role="properties" EntitySet="properties" />
+            <End Role="detailproduct" EntitySet="detailproducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_user_historycart" Association="Self.FK_user_historycart">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="historycart" EntitySet="historycarts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Img_USERS" Association="Self.FK_Img_USERS">
+            <End Role="IMG" EntitySet="IMGs" />
+            <End Role="USERS" EntitySet="USERS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_menu_menu" Association="Self.FK_menu_menu">
+            <End Role="menu" EntitySet="menus" />
+            <End Role="menu1" EntitySet="menus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_menu_product" Association="Self.FK_menu_product">
+            <End Role="menu" EntitySet="menus" />
+            <End Role="product" EntitySet="products" />
+          </AssociationSet>
+          <AssociationSet Name="history" Association="Self.history">
+            <End Role="product" EntitySet="products" />
+            <End Role="USERS" EntitySet="USERS" />
+          </AssociationSet>
+          <AssociationSet Name="LIST_IMG" Association="Self.LIST_IMG">
+            <End Role="IMG" EntitySet="IMGs" />
+            <End Role="product" EntitySet="products" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="nguyenvancudbModelStoreContainer" CdmEntityContainer="nguyenvancudbEntities">
+          <EntitySetMapping Name="ADMINS">
+            <EntityTypeMapping TypeName="nguyenvancudbModel.ADMIN">
+              <MappingFragment StoreEntitySet="ADMINS">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="passwords" ColumnName="passwords" />
+                <ScalarProperty Name="passwords_salt" ColumnName="passwords_salt" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="addressid" ColumnName="addressid" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="idrank" ColumnName="idrank" />
+                <ScalarProperty Name="date_create" ColumnName="date_create" />
+                <ScalarProperty Name="admin_create" ColumnName="admin_create" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="idImg" ColumnName="idImg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="carts">
+            <EntityTypeMapping TypeName="nguyenvancudbModel.cart">
+              <MappingFragment StoreEntitySet="cart">
+                <ScalarProperty Name="iduser" ColumnName="iduser" />
+                <ScalarProperty Name="idproduct" ColumnName="idproduct" />
+                <ScalarProperty Name="COUNT" ColumnName="COUNT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COMMENTs">
+            <EntityTypeMapping TypeName="nguyenvancudbModel.COMMENT">
+              <MappingFragment StoreEntitySet="COMMENT">
+                <ScalarProperty Name="idproduct" ColumnName="idproduct" />
+                <ScalarProperty Name="iduser" ColumnName="iduser" />
+                <ScalarProperty Name="RATE" ColumnName="RATE" />
+                <ScalarProperty Name="COMMENT1" ColumnName="COMMENT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="companies">
+            <EntityTypeMapping TypeName="nguyenvancudbModel.company">
+              <MappingFragment StoreEntitySet="company">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idcontent" ColumnName="idcontent" />
+                <ScalarProperty Name="idImg" ColumnName="idImg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CONTENTs">
+            <EntityTypeMapping TypeName="nguyenvancudbModel.CONTENT">
+              <MappingFragment StoreEntitySet="CONTENT">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="texts" ColumnName="texts" />
+                <ScalarProperty Name="IDADMINS" ColumnName="IDADMINS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="detailhistorycarts">
+            <EntityTypeMapping TypeName="nguyenvancudbModel.detailhistorycart">
+              <MappingFragment StoreEntitySet="detailhistorycart">
+                <ScalarProperty Name="idhistorycart" ColumnName="idhistorycart" />
+                <ScalarProperty Name="idproduct" ColumnName="idproduct" />
+                <ScalarProperty Name="COUNT" ColumnName="COUNT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="detailproducts">
+            <EntityTypeMapping TypeName="nguyenvancudbModel.detailproduct">
+              <MappingFragment StoreEntitySet="detailproduct">
+                <ScalarProperty Name="idproduct" ColumnName="idproduct" />
+                <ScalarProperty Name="idproperties" ColumnName="idproperties" />
+                <ScalarProperty Name="datas" ColumnName="datas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="historycarts">
+            <EntityTypeMapping TypeName="nguyenvancudbModel.historycart">
+              <MappingFragment StoreEntitySet="historycart">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="iduser" ColumnName="iduser" />
+                <ScalarProperty Name="datecart" ColumnName="datecart" />
+                <ScalarProperty Name="iscomplete" ColumnName="iscomplete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IMGs">
+            <EntityTypeMapping TypeName="nguyenvancudbModel.IMG">
+              <MappingFragment StoreEntitySet="IMG">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="link" ColumnName="link" />
+                <ScalarProperty Name="ten" ColumnName="ten" />
+                <ScalarProperty Name="owner_id" ColumnName="owner_id" />
+                <ScalarProperty Name="tableowner" ColumnName="tableowner" />
+                <ScalarProperty Name="mota" ColumnName="mota" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="menus">
+            <EntityTypeMapping TypeName="nguyenvancudbModel.menu">
+              <MappingFragment StoreEntitySet="menu">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="names" ColumnName="names" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="lv" ColumnName="lv" />
+                <ScalarProperty Name="menuownerid" ColumnName="menuownerid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="products">
+            <EntityTypeMapping TypeName="nguyenvancudbModel.product">
+              <MappingFragment StoreEntitySet="product">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="names" ColumnName="names" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="ispromotion" ColumnName="ispromotion" />
+                <ScalarProperty Name="price_promotion" ColumnName="price_promotion" />
+                <ScalarProperty Name="is_available" ColumnName="is_available" />
+                <ScalarProperty Name="idcontent" ColumnName="idcontent" />
+                <ScalarProperty Name="idmenu" ColumnName="idmenu" />
+                <ScalarProperty Name="idcompany" ColumnName="idcompany" />
+                <ScalarProperty Name="idADMINSLASTMDF" ColumnName="idADMINSLASTMDF" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="properties">
+            <EntityTypeMapping TypeName="nguyenvancudbModel.property">
+              <MappingFragment StoreEntitySet="properties">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="names" ColumnName="names" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ranks">
+            <EntityTypeMapping TypeName="nguyenvancudbModel.rank">
+              <MappingFragment StoreEntitySet="rank">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="names" ColumnName="names" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERS">
+            <EntityTypeMapping TypeName="nguyenvancudbModel.USER">
+              <MappingFragment StoreEntitySet="USERS">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="passwords" ColumnName="passwords" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="addressid" ColumnName="addressid" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="rank" ColumnName="rank" />
+                <ScalarProperty Name="datecreate" ColumnName="datecreate" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="idImg" ColumnName="idImg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="history" TypeName="nguyenvancudbModel.history" StoreEntitySet="history">
+            <EndProperty Name="product">
+              <ScalarProperty Name="id" ColumnName="idproduct" />
+            </EndProperty>
+            <EndProperty Name="USERS">
+              <ScalarProperty Name="id" ColumnName="iduser" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="LIST_IMG" TypeName="nguyenvancudbModel.LIST_IMG" StoreEntitySet="LIST_IMG">
+            <EndProperty Name="IMG">
+              <ScalarProperty Name="id" ColumnName="idImg" />
+            </EndProperty>
+            <EndProperty Name="product">
+              <ScalarProperty Name="id" ColumnName="idproduct" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
