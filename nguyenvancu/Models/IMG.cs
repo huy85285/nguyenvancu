@@ -19,7 +19,6 @@ namespace nguyenvancu.Models
             this.ADMINS = new HashSet<ADMIN>();
             this.companies = new HashSet<company>();
             this.USERS = new HashSet<USER>();
-            this.products = new HashSet<product>();
         }
     
         public int id { get; set; }
@@ -28,10 +27,11 @@ namespace nguyenvancu.Models
         public string owner_id { get; set; }
         public string tableowner { get; set; }
         public string mota { get; set; }
+        public Nullable<int> id_LIST_IMG { get; set; }
     
         public virtual ICollection<ADMIN> ADMINS { get; set; }
         public virtual ICollection<company> companies { get; set; }
         public virtual ICollection<USER> USERS { get; set; }
-        public virtual ICollection<product> products { get; set; }
+        public virtual LIST_IMG LIST_IMG { get; set; }
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="nguyenvancudbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="nguyenvancudbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ADMINS">
           <Key>
             <PropertyRef Name="id" />
@@ -104,14 +104,16 @@
           <Property Name="owner_id" Type="varchar" MaxLength="100" />
           <Property Name="tableowner" Type="varchar" MaxLength="100" />
           <Property Name="mota" Type="varchar" MaxLength="100" />
+          <Property Name="id_LIST_IMG" Type="int" />
         </EntityType>
         <EntityType Name="LIST_IMG">
           <Key>
-            <PropertyRef Name="idproduct" />
-            <PropertyRef Name="idImg" />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name="idproduct" Type="int" Nullable="false" />
-          <Property Name="idImg" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="class" Type="varchar" MaxLength="30" />
+          <Property Name="id_user" Type="varchar" MaxLength="16" />
+          <Property Name="date_update" Type="date" />
         </EntityType>
         <EntityType Name="menu">
           <Key>
@@ -137,6 +139,7 @@
           <Property Name="idmenu" Type="int" />
           <Property Name="idcompany" Type="int" />
           <Property Name="idADMINSLASTMDF" Type="varchar" MaxLength="16" />
+          <Property Name="id_list_img" Type="int" />
         </EntityType>
         <EntityType Name="properties">
           <Key>
@@ -151,6 +154,16 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="names" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="USERS">
           <Key>
@@ -276,18 +289,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Img_LISTIMG">
-          <End Role="IMG" Type="Self.IMG" Multiplicity="1" />
-          <End Role="LIST_IMG" Type="Self.LIST_IMG" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="IMG">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="LIST_IMG">
-              <PropertyRef Name="idImg" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Img_USERS">
           <End Role="IMG" Type="Self.IMG" Multiplicity="0..1" />
           <End Role="USERS" Type="Self.USERS" Multiplicity="*" />
@@ -297,6 +298,30 @@
             </Principal>
             <Dependent Role="USERS">
               <PropertyRef Name="idImg" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_list_img_Img">
+          <End Role="LIST_IMG" Type="Self.LIST_IMG" Multiplicity="0..1" />
+          <End Role="IMG" Type="Self.IMG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LIST_IMG">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="IMG">
+              <PropertyRef Name="id_LIST_IMG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_list_img_product">
+          <End Role="LIST_IMG" Type="Self.LIST_IMG" Multiplicity="0..1" />
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LIST_IMG">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="id_list_img" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -380,18 +405,6 @@
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="history">
-              <PropertyRef Name="idproduct" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_product_LISTIMG">
-          <End Role="product" Type="Self.product" Multiplicity="1" />
-          <End Role="LIST_IMG" Type="Self.LIST_IMG" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="product">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="LIST_IMG">
               <PropertyRef Name="idproduct" />
             </Dependent>
           </ReferentialConstraint>
@@ -484,6 +497,7 @@
           <EntitySet Name="product" EntityType="Self.product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="properties" EntityType="Self.properties" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="rank" EntityType="Self.rank" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_ADMINS_ADMINS" Association="Self.FK_ADMINS_ADMINS">
             <End Role="ADMINS" EntitySet="ADMINS" />
@@ -521,13 +535,17 @@
             <End Role="IMG" EntitySet="IMG" />
             <End Role="company" EntitySet="company" />
           </AssociationSet>
-          <AssociationSet Name="FK_Img_LISTIMG" Association="Self.FK_Img_LISTIMG">
-            <End Role="IMG" EntitySet="IMG" />
-            <End Role="LIST_IMG" EntitySet="LIST_IMG" />
-          </AssociationSet>
           <AssociationSet Name="FK_Img_USERS" Association="Self.FK_Img_USERS">
             <End Role="IMG" EntitySet="IMG" />
             <End Role="USERS" EntitySet="USERS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_list_img_Img" Association="Self.FK_list_img_Img">
+            <End Role="LIST_IMG" EntitySet="LIST_IMG" />
+            <End Role="IMG" EntitySet="IMG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_list_img_product" Association="Self.FK_list_img_product">
+            <End Role="LIST_IMG" EntitySet="LIST_IMG" />
+            <End Role="product" EntitySet="product" />
           </AssociationSet>
           <AssociationSet Name="FK_menu_menu" Association="Self.FK_menu_menu">
             <End Role="menu" EntitySet="menu" />
@@ -557,10 +575,6 @@
             <End Role="product" EntitySet="product" />
             <End Role="history" EntitySet="history" />
           </AssociationSet>
-          <AssociationSet Name="FK_product_LISTIMG" Association="Self.FK_product_LISTIMG">
-            <End Role="product" EntitySet="product" />
-            <End Role="LIST_IMG" EntitySet="LIST_IMG" />
-          </AssociationSet>
           <AssociationSet Name="FK_properties_detailproduct" Association="Self.FK_properties_detailproduct">
             <End Role="properties" EntitySet="properties" />
             <End Role="detailproduct" EntitySet="detailproduct" />
@@ -586,16 +600,129 @@
             <End Role="historycart" EntitySet="historycart" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="nguyenvancudbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="nguyenvancudbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ADMINS" EntityType="nguyenvancudbModel.ADMIN" />
+          <EntitySet Name="carts" EntityType="nguyenvancudbModel.cart" />
+          <EntitySet Name="COMMENTs" EntityType="nguyenvancudbModel.COMMENT" />
+          <EntitySet Name="companies" EntityType="nguyenvancudbModel.company" />
+          <EntitySet Name="CONTENTs" EntityType="nguyenvancudbModel.CONTENT" />
+          <EntitySet Name="detailhistorycarts" EntityType="nguyenvancudbModel.detailhistorycart" />
+          <EntitySet Name="detailproducts" EntityType="nguyenvancudbModel.detailproduct" />
+          <EntitySet Name="historycarts" EntityType="nguyenvancudbModel.historycart" />
+          <EntitySet Name="IMGs" EntityType="nguyenvancudbModel.IMG" />
+          <EntitySet Name="LIST_IMG" EntityType="nguyenvancudbModel.LIST_IMG" />
+          <EntitySet Name="menus" EntityType="nguyenvancudbModel.menu" />
+          <EntitySet Name="products" EntityType="nguyenvancudbModel.product" />
+          <EntitySet Name="properties" EntityType="nguyenvancudbModel.property" />
+          <EntitySet Name="ranks" EntityType="nguyenvancudbModel.rank" />
+          <EntitySet Name="sysdiagrams" EntityType="nguyenvancudbModel.sysdiagram" />
+          <EntitySet Name="USERS" EntityType="nguyenvancudbModel.USER" />
+          <AssociationSet Name="FK_ADMINS_ADMINS" Association="nguyenvancudbModel.FK_ADMINS_ADMINS">
+            <End Role="ADMIN" EntitySet="ADMINS" />
+            <End Role="ADMIN1" EntitySet="ADMINS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ADMINS_CONTENT" Association="nguyenvancudbModel.FK_ADMINS_CONTENT">
+            <End Role="ADMIN" EntitySet="ADMINS" />
+            <End Role="CONTENT" EntitySet="CONTENTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ADMINS_product" Association="nguyenvancudbModel.FK_ADMINS_product">
+            <End Role="ADMIN" EntitySet="ADMINS" />
+            <End Role="product" EntitySet="products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Img_ADMINS" Association="nguyenvancudbModel.FK_Img_ADMINS">
+            <End Role="IMG" EntitySet="IMGs" />
+            <End Role="ADMIN" EntitySet="ADMINS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_rank_ADMINS" Association="nguyenvancudbModel.FK_rank_ADMINS">
+            <End Role="rank" EntitySet="ranks" />
+            <End Role="ADMIN" EntitySet="ADMINS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_product_cart" Association="nguyenvancudbModel.FK_product_cart">
+            <End Role="product" EntitySet="products" />
+            <End Role="cart" EntitySet="carts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_user_cart" Association="nguyenvancudbModel.FK_user_cart">
+            <End Role="USER" EntitySet="USERS" />
+            <End Role="cart" EntitySet="carts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_product_COMMENT" Association="nguyenvancudbModel.FK_product_COMMENT">
+            <End Role="product" EntitySet="products" />
+            <End Role="COMMENT" EntitySet="COMMENTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_COMMENT" Association="nguyenvancudbModel.FK_USER_COMMENT">
+            <End Role="USER" EntitySet="USERS" />
+            <End Role="COMMENT" EntitySet="COMMENTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_company_product" Association="nguyenvancudbModel.FK_company_product">
+            <End Role="company" EntitySet="companies" />
+            <End Role="product" EntitySet="products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CONTENT_company" Association="nguyenvancudbModel.FK_CONTENT_company">
+            <End Role="CONTENT" EntitySet="CONTENTs" />
+            <End Role="company" EntitySet="companies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Img_company" Association="nguyenvancudbModel.FK_Img_company">
+            <End Role="IMG" EntitySet="IMGs" />
+            <End Role="company" EntitySet="companies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CONTENT_product" Association="nguyenvancudbModel.FK_CONTENT_product">
+            <End Role="CONTENT" EntitySet="CONTENTs" />
+            <End Role="product" EntitySet="products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_historycart_detailhistorycart" Association="nguyenvancudbModel.FK_historycart_detailhistorycart">
+            <End Role="historycart" EntitySet="historycarts" />
+            <End Role="detailhistorycart" EntitySet="detailhistorycarts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_product_detailhistorycart" Association="nguyenvancudbModel.FK_product_detailhistorycart">
+            <End Role="product" EntitySet="products" />
+            <End Role="detailhistorycart" EntitySet="detailhistorycarts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_product_detailproduct" Association="nguyenvancudbModel.FK_product_detailproduct">
+            <End Role="product" EntitySet="products" />
+            <End Role="detailproduct" EntitySet="detailproducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_properties_detailproduct" Association="nguyenvancudbModel.FK_properties_detailproduct">
+            <End Role="property" EntitySet="properties" />
+            <End Role="detailproduct" EntitySet="detailproducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_user_historycart" Association="nguyenvancudbModel.FK_user_historycart">
+            <End Role="USER" EntitySet="USERS" />
+            <End Role="historycart" EntitySet="historycarts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Img_USERS" Association="nguyenvancudbModel.FK_Img_USERS">
+            <End Role="IMG" EntitySet="IMGs" />
+            <End Role="USER" EntitySet="USERS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_list_img_Img" Association="nguyenvancudbModel.FK_list_img_Img">
+            <End Role="LIST_IMG" EntitySet="LIST_IMG" />
+            <End Role="IMG" EntitySet="IMGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_list_img_product" Association="nguyenvancudbModel.FK_list_img_product">
+            <End Role="LIST_IMG" EntitySet="LIST_IMG" />
+            <End Role="product" EntitySet="products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_menu_menu" Association="nguyenvancudbModel.FK_menu_menu">
+            <End Role="menu" EntitySet="menus" />
+            <End Role="menu1" EntitySet="menus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_menu_product" Association="nguyenvancudbModel.FK_menu_product">
+            <End Role="menu" EntitySet="menus" />
+            <End Role="product" EntitySet="products" />
+          </AssociationSet>
+          <AssociationSet Name="history" Association="nguyenvancudbModel.history">
+            <End Role="product" EntitySet="products" />
+            <End Role="USER" EntitySet="USERS" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="ADMIN">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
           <Property Name="passwords" Type="Binary" MaxLength="64" FixedLength="false" />
           <Property Name="passwords_salt" Type="Binary" MaxLength="64" FixedLength="false" />
           <Property Name="lastname" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
@@ -608,23 +735,23 @@
           <Property Name="admin_create" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
           <Property Name="is_active" Type="Boolean" Nullable="false" />
           <Property Name="idImg" Type="Int32" />
-          <NavigationProperty Name="ADMINS1" Relationship="Self.FK_ADMINS_ADMINS" FromRole="ADMINS" ToRole="ADMINS1" />
-          <NavigationProperty Name="ADMIN1" Relationship="Self.FK_ADMINS_ADMINS" FromRole="ADMINS1" ToRole="ADMINS" />
-          <NavigationProperty Name="CONTENTs" Relationship="Self.FK_ADMINS_CONTENT" FromRole="ADMINS" ToRole="CONTENT" />
-          <NavigationProperty Name="products" Relationship="Self.FK_ADMINS_product" FromRole="ADMINS" ToRole="product" />
-          <NavigationProperty Name="IMG" Relationship="Self.FK_Img_ADMINS" FromRole="ADMINS" ToRole="IMG" />
-          <NavigationProperty Name="rank" Relationship="Self.FK_rank_ADMINS" FromRole="ADMINS" ToRole="rank" />
+          <NavigationProperty Name="ADMINS1" Relationship="nguyenvancudbModel.FK_ADMINS_ADMINS" FromRole="ADMIN" ToRole="ADMIN1" />
+          <NavigationProperty Name="ADMIN1" Relationship="nguyenvancudbModel.FK_ADMINS_ADMINS" FromRole="ADMIN1" ToRole="ADMIN" />
+          <NavigationProperty Name="CONTENTs" Relationship="nguyenvancudbModel.FK_ADMINS_CONTENT" FromRole="ADMIN" ToRole="CONTENT" />
+          <NavigationProperty Name="products" Relationship="nguyenvancudbModel.FK_ADMINS_product" FromRole="ADMIN" ToRole="product" />
+          <NavigationProperty Name="IMG" Relationship="nguyenvancudbModel.FK_Img_ADMINS" FromRole="ADMIN" ToRole="IMG" />
+          <NavigationProperty Name="rank" Relationship="nguyenvancudbModel.FK_rank_ADMINS" FromRole="ADMIN" ToRole="rank" />
         </EntityType>
         <EntityType Name="cart">
           <Key>
             <PropertyRef Name="iduser" />
             <PropertyRef Name="idproduct" />
           </Key>
-          <Property Name="iduser" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="iduser" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
           <Property Name="idproduct" Type="Int32" Nullable="false" />
           <Property Name="COUNT" Type="Int32" />
-          <NavigationProperty Name="product" Relationship="Self.FK_product_cart" FromRole="cart" ToRole="product" />
-          <NavigationProperty Name="USER" Relationship="Self.FK_user_cart" FromRole="cart" ToRole="USERS" />
+          <NavigationProperty Name="product" Relationship="nguyenvancudbModel.FK_product_cart" FromRole="cart" ToRole="product" />
+          <NavigationProperty Name="USER" Relationship="nguyenvancudbModel.FK_user_cart" FromRole="cart" ToRole="USER" />
         </EntityType>
         <EntityType Name="COMMENT">
           <Key>
@@ -632,11 +759,11 @@
             <PropertyRef Name="iduser" />
           </Key>
           <Property Name="idproduct" Type="Int32" Nullable="false" />
-          <Property Name="iduser" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="iduser" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
           <Property Name="RATE" Type="Double" Nullable="false" />
-          <Property Name="COMMENT1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="product" Relationship="Self.FK_product_COMMENT" FromRole="COMMENT" ToRole="product" />
-          <NavigationProperty Name="USER" Relationship="Self.FK_USER_COMMENT" FromRole="COMMENT" ToRole="USERS" />
+          <Property Name="COMMENT1" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="product" Relationship="nguyenvancudbModel.FK_product_COMMENT" FromRole="COMMENT" ToRole="product" />
+          <NavigationProperty Name="USER" Relationship="nguyenvancudbModel.FK_USER_COMMENT" FromRole="COMMENT" ToRole="USER" />
         </EntityType>
         <EntityType Name="company">
           <Key>
@@ -645,9 +772,9 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="idcontent" Type="Int32" Nullable="false" />
           <Property Name="idImg" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="products" Relationship="Self.FK_company_product" FromRole="company" ToRole="product" />
-          <NavigationProperty Name="CONTENT" Relationship="Self.FK_CONTENT_company" FromRole="company" ToRole="CONTENT" />
-          <NavigationProperty Name="IMG" Relationship="Self.FK_Img_company" FromRole="company" ToRole="IMG" />
+          <NavigationProperty Name="products" Relationship="nguyenvancudbModel.FK_company_product" FromRole="company" ToRole="product" />
+          <NavigationProperty Name="CONTENT" Relationship="nguyenvancudbModel.FK_CONTENT_company" FromRole="company" ToRole="CONTENT" />
+          <NavigationProperty Name="IMG" Relationship="nguyenvancudbModel.FK_Img_company" FromRole="company" ToRole="IMG" />
         </EntityType>
         <EntityType Name="CONTENT">
           <Key>
@@ -656,10 +783,10 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="title" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
           <Property Name="texts" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="IDADMINS" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="ADMIN" Relationship="Self.FK_ADMINS_CONTENT" FromRole="CONTENT" ToRole="ADMINS" />
-          <NavigationProperty Name="companies" Relationship="Self.FK_CONTENT_company" FromRole="CONTENT" ToRole="company" />
-          <NavigationProperty Name="products" Relationship="Self.FK_CONTENT_product" FromRole="CONTENT" ToRole="product" />
+          <Property Name="IDADMINS" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ADMIN" Relationship="nguyenvancudbModel.FK_ADMINS_CONTENT" FromRole="CONTENT" ToRole="ADMIN" />
+          <NavigationProperty Name="companies" Relationship="nguyenvancudbModel.FK_CONTENT_company" FromRole="CONTENT" ToRole="company" />
+          <NavigationProperty Name="products" Relationship="nguyenvancudbModel.FK_CONTENT_product" FromRole="CONTENT" ToRole="product" />
         </EntityType>
         <EntityType Name="detailhistorycart">
           <Key>
@@ -669,8 +796,8 @@
           <Property Name="idhistorycart" Type="Int32" Nullable="false" />
           <Property Name="idproduct" Type="Int32" Nullable="false" />
           <Property Name="COUNT" Type="Int32" />
-          <NavigationProperty Name="historycart" Relationship="Self.FK_historycart_detailhistorycart" FromRole="detailhistorycart" ToRole="historycart" />
-          <NavigationProperty Name="product" Relationship="Self.FK_product_detailhistorycart" FromRole="detailhistorycart" ToRole="product" />
+          <NavigationProperty Name="historycart" Relationship="nguyenvancudbModel.FK_historycart_detailhistorycart" FromRole="detailhistorycart" ToRole="historycart" />
+          <NavigationProperty Name="product" Relationship="nguyenvancudbModel.FK_product_detailhistorycart" FromRole="detailhistorycart" ToRole="product" />
         </EntityType>
         <EntityType Name="detailproduct">
           <Key>
@@ -680,19 +807,19 @@
           <Property Name="idproduct" Type="Int32" Nullable="false" />
           <Property Name="idproperties" Type="Int32" Nullable="false" />
           <Property Name="datas" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="product" Relationship="Self.FK_product_detailproduct" FromRole="detailproduct" ToRole="product" />
-          <NavigationProperty Name="property" Relationship="Self.FK_properties_detailproduct" FromRole="detailproduct" ToRole="properties" />
+          <NavigationProperty Name="product" Relationship="nguyenvancudbModel.FK_product_detailproduct" FromRole="detailproduct" ToRole="product" />
+          <NavigationProperty Name="property" Relationship="nguyenvancudbModel.FK_properties_detailproduct" FromRole="detailproduct" ToRole="property" />
         </EntityType>
         <EntityType Name="historycart">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="iduser" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="iduser" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
           <Property Name="datecart" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="iscomplete" Type="Boolean" />
-          <NavigationProperty Name="detailhistorycarts" Relationship="Self.FK_historycart_detailhistorycart" FromRole="historycart" ToRole="detailhistorycart" />
-          <NavigationProperty Name="USER" Relationship="Self.FK_user_historycart" FromRole="historycart" ToRole="USERS" />
+          <NavigationProperty Name="detailhistorycarts" Relationship="nguyenvancudbModel.FK_historycart_detailhistorycart" FromRole="historycart" ToRole="detailhistorycart" />
+          <NavigationProperty Name="USER" Relationship="nguyenvancudbModel.FK_user_historycart" FromRole="historycart" ToRole="USER" />
         </EntityType>
         <EntityType Name="IMG">
           <Key>
@@ -704,23 +831,35 @@
           <Property Name="owner_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="tableowner" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="mota" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="ADMINS" Relationship="Self.FK_Img_ADMINS" FromRole="IMG" ToRole="ADMINS" />
-          <NavigationProperty Name="companies" Relationship="Self.FK_Img_company" FromRole="IMG" ToRole="company" />
-          <NavigationProperty Name="USERS" Relationship="Self.FK_Img_USERS" FromRole="IMG" ToRole="USERS" />
-          <NavigationProperty Name="products" Relationship="Self.LIST_IMG" FromRole="IMG" ToRole="product" />
+          <Property Name="id_LIST_IMG" Type="Int32" />
+          <NavigationProperty Name="ADMINS" Relationship="nguyenvancudbModel.FK_Img_ADMINS" FromRole="IMG" ToRole="ADMIN" />
+          <NavigationProperty Name="companies" Relationship="nguyenvancudbModel.FK_Img_company" FromRole="IMG" ToRole="company" />
+          <NavigationProperty Name="USERS" Relationship="nguyenvancudbModel.FK_Img_USERS" FromRole="IMG" ToRole="USER" />
+          <NavigationProperty Name="LIST_IMG" Relationship="nguyenvancudbModel.FK_list_img_Img" FromRole="IMG" ToRole="LIST_IMG" />
+        </EntityType>
+        <EntityType Name="LIST_IMG">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="class" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="id_user" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="date_update" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="IMGs" Relationship="nguyenvancudbModel.FK_list_img_Img" FromRole="LIST_IMG" ToRole="IMG" />
+          <NavigationProperty Name="products" Relationship="nguyenvancudbModel.FK_list_img_product" FromRole="LIST_IMG" ToRole="product" />
         </EntityType>
         <EntityType Name="menu">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="names" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="names" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="is_active" Type="Boolean" Nullable="false" />
           <Property Name="lv" Type="Int32" Nullable="false" />
           <Property Name="menuownerid" Type="Int32" />
-          <NavigationProperty Name="menu1" Relationship="Self.FK_menu_menu" FromRole="menu" ToRole="menu1" />
-          <NavigationProperty Name="menu2" Relationship="Self.FK_menu_menu" FromRole="menu1" ToRole="menu" />
-          <NavigationProperty Name="products" Relationship="Self.FK_menu_product" FromRole="menu" ToRole="product" />
+          <NavigationProperty Name="menu1" Relationship="nguyenvancudbModel.FK_menu_menu" FromRole="menu" ToRole="menu1" />
+          <NavigationProperty Name="menu2" Relationship="nguyenvancudbModel.FK_menu_menu" FromRole="menu1" ToRole="menu" />
+          <NavigationProperty Name="products" Relationship="nguyenvancudbModel.FK_menu_product" FromRole="menu" ToRole="product" />
         </EntityType>
         <EntityType Name="product">
           <Key>
@@ -736,16 +875,17 @@
           <Property Name="idmenu" Type="Int32" />
           <Property Name="idcompany" Type="Int32" />
           <Property Name="idADMINSLASTMDF" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="ADMIN" Relationship="Self.FK_ADMINS_product" FromRole="product" ToRole="ADMINS" />
-          <NavigationProperty Name="carts" Relationship="Self.FK_product_cart" FromRole="product" ToRole="cart" />
-          <NavigationProperty Name="COMMENTs" Relationship="Self.FK_product_COMMENT" FromRole="product" ToRole="COMMENT" />
-          <NavigationProperty Name="company" Relationship="Self.FK_company_product" FromRole="product" ToRole="company" />
-          <NavigationProperty Name="CONTENT" Relationship="Self.FK_CONTENT_product" FromRole="product" ToRole="CONTENT" />
-          <NavigationProperty Name="detailhistorycarts" Relationship="Self.FK_product_detailhistorycart" FromRole="product" ToRole="detailhistorycart" />
-          <NavigationProperty Name="detailproducts" Relationship="Self.FK_product_detailproduct" FromRole="product" ToRole="detailproduct" />
-          <NavigationProperty Name="menu" Relationship="Self.FK_menu_product" FromRole="product" ToRole="menu" />
-          <NavigationProperty Name="USERS" Relationship="Self.history" FromRole="product" ToRole="USERS" />
-          <NavigationProperty Name="IMGs" Relationship="Self.LIST_IMG" FromRole="product" ToRole="IMG" />
+          <Property Name="id_list_img" Type="Int32" />
+          <NavigationProperty Name="ADMIN" Relationship="nguyenvancudbModel.FK_ADMINS_product" FromRole="product" ToRole="ADMIN" />
+          <NavigationProperty Name="carts" Relationship="nguyenvancudbModel.FK_product_cart" FromRole="product" ToRole="cart" />
+          <NavigationProperty Name="COMMENTs" Relationship="nguyenvancudbModel.FK_product_COMMENT" FromRole="product" ToRole="COMMENT" />
+          <NavigationProperty Name="company" Relationship="nguyenvancudbModel.FK_company_product" FromRole="product" ToRole="company" />
+          <NavigationProperty Name="CONTENT" Relationship="nguyenvancudbModel.FK_CONTENT_product" FromRole="product" ToRole="CONTENT" />
+          <NavigationProperty Name="detailhistorycarts" Relationship="nguyenvancudbModel.FK_product_detailhistorycart" FromRole="product" ToRole="detailhistorycart" />
+          <NavigationProperty Name="detailproducts" Relationship="nguyenvancudbModel.FK_product_detailproduct" FromRole="product" ToRole="detailproduct" />
+          <NavigationProperty Name="LIST_IMG" Relationship="nguyenvancudbModel.FK_list_img_product" FromRole="product" ToRole="LIST_IMG" />
+          <NavigationProperty Name="menu" Relationship="nguyenvancudbModel.FK_menu_product" FromRole="product" ToRole="menu" />
+          <NavigationProperty Name="USERS" Relationship="nguyenvancudbModel.history" FromRole="product" ToRole="USER" />
         </EntityType>
         <EntityType Name="property">
           <Key>
@@ -753,7 +893,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="names" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="detailproducts" Relationship="Self.FK_properties_detailproduct" FromRole="properties" ToRole="detailproduct" />
+          <NavigationProperty Name="detailproducts" Relationship="nguyenvancudbModel.FK_properties_detailproduct" FromRole="property" ToRole="detailproduct" />
         </EntityType>
         <EntityType Name="rank">
           <Key>
@@ -761,13 +901,23 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="names" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ADMINS" Relationship="Self.FK_rank_ADMINS" FromRole="rank" ToRole="ADMINS" />
+          <NavigationProperty Name="ADMINS" Relationship="nguyenvancudbModel.FK_rank_ADMINS" FromRole="rank" ToRole="ADMIN" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="USER">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
           <Property Name="passwords" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
           <Property Name="lastname" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
           <Property Name="firstname" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
@@ -778,29 +928,29 @@
           <Property Name="datecreate" Type="DateTime" Precision="3" />
           <Property Name="is_active" Type="Boolean" Nullable="false" />
           <Property Name="idImg" Type="Int32" />
-          <NavigationProperty Name="carts" Relationship="Self.FK_user_cart" FromRole="USERS" ToRole="cart" />
-          <NavigationProperty Name="COMMENTs" Relationship="Self.FK_USER_COMMENT" FromRole="USERS" ToRole="COMMENT" />
-          <NavigationProperty Name="historycarts" Relationship="Self.FK_user_historycart" FromRole="USERS" ToRole="historycart" />
-          <NavigationProperty Name="IMG" Relationship="Self.FK_Img_USERS" FromRole="USERS" ToRole="IMG" />
-          <NavigationProperty Name="products" Relationship="Self.history" FromRole="USERS" ToRole="product" />
+          <NavigationProperty Name="carts" Relationship="nguyenvancudbModel.FK_user_cart" FromRole="USER" ToRole="cart" />
+          <NavigationProperty Name="COMMENTs" Relationship="nguyenvancudbModel.FK_USER_COMMENT" FromRole="USER" ToRole="COMMENT" />
+          <NavigationProperty Name="historycarts" Relationship="nguyenvancudbModel.FK_user_historycart" FromRole="USER" ToRole="historycart" />
+          <NavigationProperty Name="IMG" Relationship="nguyenvancudbModel.FK_Img_USERS" FromRole="USER" ToRole="IMG" />
+          <NavigationProperty Name="products" Relationship="nguyenvancudbModel.history" FromRole="USER" ToRole="product" />
         </EntityType>
         <Association Name="FK_ADMINS_ADMINS">
-          <End Role="ADMINS" Type="Self.ADMIN" Multiplicity="0..1" />
-          <End Role="ADMINS1" Type="Self.ADMIN" Multiplicity="*" />
+          <End Type="nguyenvancudbModel.ADMIN" Role="ADMIN" Multiplicity="0..1" />
+          <End Type="nguyenvancudbModel.ADMIN" Role="ADMIN1" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="ADMINS">
+            <Principal Role="ADMIN">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="ADMINS1">
+            <Dependent Role="ADMIN1">
               <PropertyRef Name="admin_create" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ADMINS_CONTENT">
-          <End Role="ADMINS" Type="Self.ADMIN" Multiplicity="1" />
-          <End Role="CONTENT" Type="Self.CONTENT" Multiplicity="*" />
+          <End Type="nguyenvancudbModel.ADMIN" Role="ADMIN" Multiplicity="1" />
+          <End Type="nguyenvancudbModel.CONTENT" Role="CONTENT" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="ADMINS">
+            <Principal Role="ADMIN">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="CONTENT">
@@ -809,10 +959,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ADMINS_product">
-          <End Role="ADMINS" Type="Self.ADMIN" Multiplicity="0..1" />
-          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <End Type="nguyenvancudbModel.ADMIN" Role="ADMIN" Multiplicity="0..1" />
+          <End Type="nguyenvancudbModel.product" Role="product" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="ADMINS">
+            <Principal Role="ADMIN">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="product">
@@ -821,32 +971,32 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Img_ADMINS">
-          <End Role="IMG" Type="Self.IMG" Multiplicity="0..1" />
-          <End Role="ADMINS" Type="Self.ADMIN" Multiplicity="*" />
+          <End Type="nguyenvancudbModel.IMG" Role="IMG" Multiplicity="0..1" />
+          <End Type="nguyenvancudbModel.ADMIN" Role="ADMIN" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="IMG">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="ADMINS">
+            <Dependent Role="ADMIN">
               <PropertyRef Name="idImg" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_rank_ADMINS">
-          <End Role="rank" Type="Self.rank" Multiplicity="0..1" />
-          <End Role="ADMINS" Type="Self.ADMIN" Multiplicity="*" />
+          <End Type="nguyenvancudbModel.rank" Role="rank" Multiplicity="0..1" />
+          <End Type="nguyenvancudbModel.ADMIN" Role="ADMIN" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="rank">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="ADMINS">
+            <Dependent Role="ADMIN">
               <PropertyRef Name="idrank" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_product_cart">
-          <End Role="product" Type="Self.product" Multiplicity="1" />
-          <End Role="cart" Type="Self.cart" Multiplicity="*" />
+          <End Type="nguyenvancudbModel.product" Role="product" Multiplicity="1" />
+          <End Type="nguyenvancudbModel.cart" Role="cart" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="product">
               <PropertyRef Name="id" />
@@ -857,10 +1007,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_user_cart">
-          <End Role="USERS" Type="Self.USER" Multiplicity="1" />
-          <End Role="cart" Type="Self.cart" Multiplicity="*" />
+          <End Type="nguyenvancudbModel.USER" Role="USER" Multiplicity="1" />
+          <End Type="nguyenvancudbModel.cart" Role="cart" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="USERS">
+            <Principal Role="USER">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="cart">
@@ -869,8 +1019,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_product_COMMENT">
-          <End Role="product" Type="Self.product" Multiplicity="1" />
-          <End Role="COMMENT" Type="Self.COMMENT" Multiplicity="*" />
+          <End Type="nguyenvancudbModel.product" Role="product" Multiplicity="1" />
+          <End Type="nguyenvancudbModel.COMMENT" Role="COMMENT" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="product">
               <PropertyRef Name="id" />
@@ -881,10 +1031,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_USER_COMMENT">
-          <End Role="USERS" Type="Self.USER" Multiplicity="1" />
-          <End Role="COMMENT" Type="Self.COMMENT" Multiplicity="*" />
+          <End Type="nguyenvancudbModel.USER" Role="USER" Multiplicity="1" />
+          <End Type="nguyenvancudbModel.COMMENT" Role="COMMENT" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="USERS">
+            <Principal Role="USER">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="COMMENT">
@@ -893,8 +1043,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_company_product">
-          <End Role="company" Type="Self.company" Multiplicity="0..1" />
-          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <End Type="nguyenvancudbModel.company" Role="company" Multiplicity="0..1" />
+          <End Type="nguyenvancudbModel.product" Role="product" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="company">
               <PropertyRef Name="id" />
@@ -905,8 +1055,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CONTENT_company">
-          <End Role="CONTENT" Type="Self.CONTENT" Multiplicity="1" />
-          <End Role="company" Type="Self.company" Multiplicity="*" />
+          <End Type="nguyenvancudbModel.CONTENT" Role="CONTENT" Multiplicity="1" />
+          <End Type="nguyenvancudbModel.company" Role="company" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CONTENT">
               <PropertyRef Name="id" />
@@ -917,8 +1067,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Img_company">
-          <End Role="IMG" Type="Self.IMG" Multiplicity="1" />
-          <End Role="company" Type="Self.company" Multiplicity="*" />
+          <End Type="nguyenvancudbModel.IMG" Role="IMG" Multiplicity="1" />
+          <End Type="nguyenvancudbModel.company" Role="company" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="IMG">
               <PropertyRef Name="id" />
@@ -929,8 +1079,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CONTENT_product">
-          <End Role="CONTENT" Type="Self.CONTENT" Multiplicity="1" />
-          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <End Type="nguyenvancudbModel.CONTENT" Role="CONTENT" Multiplicity="1" />
+          <End Type="nguyenvancudbModel.product" Role="product" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CONTENT">
               <PropertyRef Name="id" />
@@ -941,8 +1091,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_historycart_detailhistorycart">
-          <End Role="historycart" Type="Self.historycart" Multiplicity="1" />
-          <End Role="detailhistorycart" Type="Self.detailhistorycart" Multiplicity="*" />
+          <End Type="nguyenvancudbModel.historycart" Role="historycart" Multiplicity="1" />
+          <End Type="nguyenvancudbModel.detailhistorycart" Role="detailhistorycart" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="historycart">
               <PropertyRef Name="Id" />
@@ -953,8 +1103,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_product_detailhistorycart">
-          <End Role="product" Type="Self.product" Multiplicity="1" />
-          <End Role="detailhistorycart" Type="Self.detailhistorycart" Multiplicity="*" />
+          <End Type="nguyenvancudbModel.product" Role="product" Multiplicity="1" />
+          <End Type="nguyenvancudbModel.detailhistorycart" Role="detailhistorycart" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="product">
               <PropertyRef Name="id" />
@@ -965,8 +1115,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_product_detailproduct">
-          <End Role="product" Type="Self.product" Multiplicity="1" />
-          <End Role="detailproduct" Type="Self.detailproduct" Multiplicity="*" />
+          <End Type="nguyenvancudbModel.product" Role="product" Multiplicity="1" />
+          <End Type="nguyenvancudbModel.detailproduct" Role="detailproduct" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="product">
               <PropertyRef Name="id" />
@@ -977,10 +1127,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_properties_detailproduct">
-          <End Role="properties" Type="Self.property" Multiplicity="1" />
-          <End Role="detailproduct" Type="Self.detailproduct" Multiplicity="*" />
+          <End Type="nguyenvancudbModel.property" Role="property" Multiplicity="1" />
+          <End Type="nguyenvancudbModel.detailproduct" Role="detailproduct" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="properties">
+            <Principal Role="property">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="detailproduct">
@@ -989,10 +1139,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_user_historycart">
-          <End Role="USERS" Type="Self.USER" Multiplicity="1" />
-          <End Role="historycart" Type="Self.historycart" Multiplicity="*" />
+          <End Type="nguyenvancudbModel.USER" Role="USER" Multiplicity="1" />
+          <End Type="nguyenvancudbModel.historycart" Role="historycart" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="USERS">
+            <Principal Role="USER">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="historycart">
@@ -1001,20 +1151,44 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Img_USERS">
-          <End Role="IMG" Type="Self.IMG" Multiplicity="0..1" />
-          <End Role="USERS" Type="Self.USER" Multiplicity="*" />
+          <End Type="nguyenvancudbModel.IMG" Role="IMG" Multiplicity="0..1" />
+          <End Type="nguyenvancudbModel.USER" Role="USER" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="IMG">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="USERS">
+            <Dependent Role="USER">
               <PropertyRef Name="idImg" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_list_img_Img">
+          <End Type="nguyenvancudbModel.LIST_IMG" Role="LIST_IMG" Multiplicity="0..1" />
+          <End Type="nguyenvancudbModel.IMG" Role="IMG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LIST_IMG">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="IMG">
+              <PropertyRef Name="id_LIST_IMG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_list_img_product">
+          <End Type="nguyenvancudbModel.LIST_IMG" Role="LIST_IMG" Multiplicity="0..1" />
+          <End Type="nguyenvancudbModel.product" Role="product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LIST_IMG">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="id_list_img" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_menu_menu">
-          <End Role="menu" Type="Self.menu" Multiplicity="0..1" />
-          <End Role="menu1" Type="Self.menu" Multiplicity="*" />
+          <End Type="nguyenvancudbModel.menu" Role="menu" Multiplicity="0..1" />
+          <End Type="nguyenvancudbModel.menu" Role="menu1" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="menu">
               <PropertyRef Name="id" />
@@ -1025,8 +1199,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_menu_product">
-          <End Role="menu" Type="Self.menu" Multiplicity="0..1" />
-          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <End Type="nguyenvancudbModel.menu" Role="menu" Multiplicity="0..1" />
+          <End Type="nguyenvancudbModel.product" Role="product" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="menu">
               <PropertyRef Name="id" />
@@ -1037,303 +1211,205 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="history">
-          <End Role="product" Type="Self.product" Multiplicity="*" />
-          <End Role="USERS" Type="Self.USER" Multiplicity="*" />
+          <End Type="nguyenvancudbModel.product" Role="product" Multiplicity="*" />
+          <End Type="nguyenvancudbModel.USER" Role="USER" Multiplicity="*" />
         </Association>
-        <Association Name="LIST_IMG">
-          <End Role="IMG" Type="Self.IMG" Multiplicity="*" />
-          <End Role="product" Type="Self.product" Multiplicity="*" />
-        </Association>
-        <EntityContainer Name="nguyenvancudbEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="ADMINS" EntityType="Self.ADMIN" />
-          <EntitySet Name="carts" EntityType="Self.cart" />
-          <EntitySet Name="COMMENTs" EntityType="Self.COMMENT" />
-          <EntitySet Name="companies" EntityType="Self.company" />
-          <EntitySet Name="CONTENTs" EntityType="Self.CONTENT" />
-          <EntitySet Name="detailhistorycarts" EntityType="Self.detailhistorycart" />
-          <EntitySet Name="detailproducts" EntityType="Self.detailproduct" />
-          <EntitySet Name="historycarts" EntityType="Self.historycart" />
-          <EntitySet Name="IMGs" EntityType="Self.IMG" />
-          <EntitySet Name="menus" EntityType="Self.menu" />
-          <EntitySet Name="products" EntityType="Self.product" />
-          <EntitySet Name="properties" EntityType="Self.property" />
-          <EntitySet Name="ranks" EntityType="Self.rank" />
-          <EntitySet Name="USERS" EntityType="Self.USER" />
-          <AssociationSet Name="FK_ADMINS_ADMINS" Association="Self.FK_ADMINS_ADMINS">
-            <End Role="ADMINS" EntitySet="ADMINS" />
-            <End Role="ADMINS1" EntitySet="ADMINS" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ADMINS_CONTENT" Association="Self.FK_ADMINS_CONTENT">
-            <End Role="ADMINS" EntitySet="ADMINS" />
-            <End Role="CONTENT" EntitySet="CONTENTs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ADMINS_product" Association="Self.FK_ADMINS_product">
-            <End Role="ADMINS" EntitySet="ADMINS" />
-            <End Role="product" EntitySet="products" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Img_ADMINS" Association="Self.FK_Img_ADMINS">
-            <End Role="IMG" EntitySet="IMGs" />
-            <End Role="ADMINS" EntitySet="ADMINS" />
-          </AssociationSet>
-          <AssociationSet Name="FK_rank_ADMINS" Association="Self.FK_rank_ADMINS">
-            <End Role="rank" EntitySet="ranks" />
-            <End Role="ADMINS" EntitySet="ADMINS" />
-          </AssociationSet>
-          <AssociationSet Name="FK_product_cart" Association="Self.FK_product_cart">
-            <End Role="product" EntitySet="products" />
-            <End Role="cart" EntitySet="carts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_user_cart" Association="Self.FK_user_cart">
-            <End Role="USERS" EntitySet="USERS" />
-            <End Role="cart" EntitySet="carts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_product_COMMENT" Association="Self.FK_product_COMMENT">
-            <End Role="product" EntitySet="products" />
-            <End Role="COMMENT" EntitySet="COMMENTs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_USER_COMMENT" Association="Self.FK_USER_COMMENT">
-            <End Role="USERS" EntitySet="USERS" />
-            <End Role="COMMENT" EntitySet="COMMENTs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_company_product" Association="Self.FK_company_product">
-            <End Role="company" EntitySet="companies" />
-            <End Role="product" EntitySet="products" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CONTENT_company" Association="Self.FK_CONTENT_company">
-            <End Role="CONTENT" EntitySet="CONTENTs" />
-            <End Role="company" EntitySet="companies" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Img_company" Association="Self.FK_Img_company">
-            <End Role="IMG" EntitySet="IMGs" />
-            <End Role="company" EntitySet="companies" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CONTENT_product" Association="Self.FK_CONTENT_product">
-            <End Role="CONTENT" EntitySet="CONTENTs" />
-            <End Role="product" EntitySet="products" />
-          </AssociationSet>
-          <AssociationSet Name="FK_historycart_detailhistorycart" Association="Self.FK_historycart_detailhistorycart">
-            <End Role="historycart" EntitySet="historycarts" />
-            <End Role="detailhistorycart" EntitySet="detailhistorycarts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_product_detailhistorycart" Association="Self.FK_product_detailhistorycart">
-            <End Role="product" EntitySet="products" />
-            <End Role="detailhistorycart" EntitySet="detailhistorycarts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_product_detailproduct" Association="Self.FK_product_detailproduct">
-            <End Role="product" EntitySet="products" />
-            <End Role="detailproduct" EntitySet="detailproducts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_properties_detailproduct" Association="Self.FK_properties_detailproduct">
-            <End Role="properties" EntitySet="properties" />
-            <End Role="detailproduct" EntitySet="detailproducts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_user_historycart" Association="Self.FK_user_historycart">
-            <End Role="USERS" EntitySet="USERS" />
-            <End Role="historycart" EntitySet="historycarts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Img_USERS" Association="Self.FK_Img_USERS">
-            <End Role="IMG" EntitySet="IMGs" />
-            <End Role="USERS" EntitySet="USERS" />
-          </AssociationSet>
-          <AssociationSet Name="FK_menu_menu" Association="Self.FK_menu_menu">
-            <End Role="menu" EntitySet="menus" />
-            <End Role="menu1" EntitySet="menus" />
-          </AssociationSet>
-          <AssociationSet Name="FK_menu_product" Association="Self.FK_menu_product">
-            <End Role="menu" EntitySet="menus" />
-            <End Role="product" EntitySet="products" />
-          </AssociationSet>
-          <AssociationSet Name="history" Association="Self.history">
-            <End Role="product" EntitySet="products" />
-            <End Role="USERS" EntitySet="USERS" />
-          </AssociationSet>
-          <AssociationSet Name="LIST_IMG" Association="Self.LIST_IMG">
-            <End Role="IMG" EntitySet="IMGs" />
-            <End Role="product" EntitySet="products" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="nguyenvancudbModelStoreContainer" CdmEntityContainer="nguyenvancudbEntities">
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="nguyenvancudbModelStoreContainer" CdmEntityContainer="nguyenvancudbEntities">
           <EntitySetMapping Name="ADMINS">
             <EntityTypeMapping TypeName="nguyenvancudbModel.ADMIN">
               <MappingFragment StoreEntitySet="ADMINS">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="passwords" ColumnName="passwords" />
-                <ScalarProperty Name="passwords_salt" ColumnName="passwords_salt" />
-                <ScalarProperty Name="lastname" ColumnName="lastname" />
-                <ScalarProperty Name="firstname" ColumnName="firstname" />
-                <ScalarProperty Name="addressid" ColumnName="addressid" />
-                <ScalarProperty Name="phone" ColumnName="phone" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="idrank" ColumnName="idrank" />
-                <ScalarProperty Name="date_create" ColumnName="date_create" />
-                <ScalarProperty Name="admin_create" ColumnName="admin_create" />
-                <ScalarProperty Name="is_active" ColumnName="is_active" />
                 <ScalarProperty Name="idImg" ColumnName="idImg" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="admin_create" ColumnName="admin_create" />
+                <ScalarProperty Name="date_create" ColumnName="date_create" />
+                <ScalarProperty Name="idrank" ColumnName="idrank" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="addressid" ColumnName="addressid" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="passwords_salt" ColumnName="passwords_salt" />
+                <ScalarProperty Name="passwords" ColumnName="passwords" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="carts">
             <EntityTypeMapping TypeName="nguyenvancudbModel.cart">
               <MappingFragment StoreEntitySet="cart">
-                <ScalarProperty Name="iduser" ColumnName="iduser" />
-                <ScalarProperty Name="idproduct" ColumnName="idproduct" />
                 <ScalarProperty Name="COUNT" ColumnName="COUNT" />
+                <ScalarProperty Name="idproduct" ColumnName="idproduct" />
+                <ScalarProperty Name="iduser" ColumnName="iduser" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="COMMENTs">
             <EntityTypeMapping TypeName="nguyenvancudbModel.COMMENT">
               <MappingFragment StoreEntitySet="COMMENT">
-                <ScalarProperty Name="idproduct" ColumnName="idproduct" />
-                <ScalarProperty Name="iduser" ColumnName="iduser" />
-                <ScalarProperty Name="RATE" ColumnName="RATE" />
                 <ScalarProperty Name="COMMENT1" ColumnName="COMMENT" />
+                <ScalarProperty Name="RATE" ColumnName="RATE" />
+                <ScalarProperty Name="iduser" ColumnName="iduser" />
+                <ScalarProperty Name="idproduct" ColumnName="idproduct" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="companies">
             <EntityTypeMapping TypeName="nguyenvancudbModel.company">
               <MappingFragment StoreEntitySet="company">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="idcontent" ColumnName="idcontent" />
                 <ScalarProperty Name="idImg" ColumnName="idImg" />
+                <ScalarProperty Name="idcontent" ColumnName="idcontent" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CONTENTs">
             <EntityTypeMapping TypeName="nguyenvancudbModel.CONTENT">
               <MappingFragment StoreEntitySet="CONTENT">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="title" ColumnName="title" />
-                <ScalarProperty Name="texts" ColumnName="texts" />
                 <ScalarProperty Name="IDADMINS" ColumnName="IDADMINS" />
+                <ScalarProperty Name="texts" ColumnName="texts" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="detailhistorycarts">
             <EntityTypeMapping TypeName="nguyenvancudbModel.detailhistorycart">
               <MappingFragment StoreEntitySet="detailhistorycart">
-                <ScalarProperty Name="idhistorycart" ColumnName="idhistorycart" />
-                <ScalarProperty Name="idproduct" ColumnName="idproduct" />
                 <ScalarProperty Name="COUNT" ColumnName="COUNT" />
+                <ScalarProperty Name="idproduct" ColumnName="idproduct" />
+                <ScalarProperty Name="idhistorycart" ColumnName="idhistorycart" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="detailproducts">
             <EntityTypeMapping TypeName="nguyenvancudbModel.detailproduct">
               <MappingFragment StoreEntitySet="detailproduct">
-                <ScalarProperty Name="idproduct" ColumnName="idproduct" />
-                <ScalarProperty Name="idproperties" ColumnName="idproperties" />
                 <ScalarProperty Name="datas" ColumnName="datas" />
+                <ScalarProperty Name="idproperties" ColumnName="idproperties" />
+                <ScalarProperty Name="idproduct" ColumnName="idproduct" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="historycarts">
             <EntityTypeMapping TypeName="nguyenvancudbModel.historycart">
               <MappingFragment StoreEntitySet="historycart">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="iduser" ColumnName="iduser" />
-                <ScalarProperty Name="datecart" ColumnName="datecart" />
                 <ScalarProperty Name="iscomplete" ColumnName="iscomplete" />
+                <ScalarProperty Name="datecart" ColumnName="datecart" />
+                <ScalarProperty Name="iduser" ColumnName="iduser" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="IMGs">
             <EntityTypeMapping TypeName="nguyenvancudbModel.IMG">
               <MappingFragment StoreEntitySet="IMG">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="link" ColumnName="link" />
-                <ScalarProperty Name="ten" ColumnName="ten" />
-                <ScalarProperty Name="owner_id" ColumnName="owner_id" />
-                <ScalarProperty Name="tableowner" ColumnName="tableowner" />
+                <ScalarProperty Name="id_LIST_IMG" ColumnName="id_LIST_IMG" />
                 <ScalarProperty Name="mota" ColumnName="mota" />
+                <ScalarProperty Name="tableowner" ColumnName="tableowner" />
+                <ScalarProperty Name="owner_id" ColumnName="owner_id" />
+                <ScalarProperty Name="ten" ColumnName="ten" />
+                <ScalarProperty Name="link" ColumnName="link" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LIST_IMG">
+            <EntityTypeMapping TypeName="nguyenvancudbModel.LIST_IMG">
+              <MappingFragment StoreEntitySet="LIST_IMG">
+                <ScalarProperty Name="date_update" ColumnName="date_update" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="class" ColumnName="class" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="menus">
             <EntityTypeMapping TypeName="nguyenvancudbModel.menu">
               <MappingFragment StoreEntitySet="menu">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="names" ColumnName="names" />
-                <ScalarProperty Name="is_active" ColumnName="is_active" />
-                <ScalarProperty Name="lv" ColumnName="lv" />
                 <ScalarProperty Name="menuownerid" ColumnName="menuownerid" />
+                <ScalarProperty Name="lv" ColumnName="lv" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="names" ColumnName="names" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="products">
             <EntityTypeMapping TypeName="nguyenvancudbModel.product">
               <MappingFragment StoreEntitySet="product">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="names" ColumnName="names" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="ispromotion" ColumnName="ispromotion" />
-                <ScalarProperty Name="price_promotion" ColumnName="price_promotion" />
-                <ScalarProperty Name="is_available" ColumnName="is_available" />
-                <ScalarProperty Name="idcontent" ColumnName="idcontent" />
-                <ScalarProperty Name="idmenu" ColumnName="idmenu" />
-                <ScalarProperty Name="idcompany" ColumnName="idcompany" />
+                <ScalarProperty Name="id_list_img" ColumnName="id_list_img" />
                 <ScalarProperty Name="idADMINSLASTMDF" ColumnName="idADMINSLASTMDF" />
+                <ScalarProperty Name="idcompany" ColumnName="idcompany" />
+                <ScalarProperty Name="idmenu" ColumnName="idmenu" />
+                <ScalarProperty Name="idcontent" ColumnName="idcontent" />
+                <ScalarProperty Name="is_available" ColumnName="is_available" />
+                <ScalarProperty Name="price_promotion" ColumnName="price_promotion" />
+                <ScalarProperty Name="ispromotion" ColumnName="ispromotion" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="names" ColumnName="names" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="properties">
             <EntityTypeMapping TypeName="nguyenvancudbModel.property">
               <MappingFragment StoreEntitySet="properties">
-                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="names" ColumnName="names" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ranks">
             <EntityTypeMapping TypeName="nguyenvancudbModel.rank">
               <MappingFragment StoreEntitySet="rank">
-                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="names" ColumnName="names" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="nguyenvancudbModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="USERS">
             <EntityTypeMapping TypeName="nguyenvancudbModel.USER">
               <MappingFragment StoreEntitySet="USERS">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="passwords" ColumnName="passwords" />
-                <ScalarProperty Name="lastname" ColumnName="lastname" />
-                <ScalarProperty Name="firstname" ColumnName="firstname" />
-                <ScalarProperty Name="addressid" ColumnName="addressid" />
-                <ScalarProperty Name="phone" ColumnName="phone" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="rank" ColumnName="rank" />
-                <ScalarProperty Name="datecreate" ColumnName="datecreate" />
-                <ScalarProperty Name="is_active" ColumnName="is_active" />
                 <ScalarProperty Name="idImg" ColumnName="idImg" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="datecreate" ColumnName="datecreate" />
+                <ScalarProperty Name="rank" ColumnName="rank" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="addressid" ColumnName="addressid" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="passwords" ColumnName="passwords" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <AssociationSetMapping Name="history" TypeName="nguyenvancudbModel.history" StoreEntitySet="history">
-            <EndProperty Name="product">
-              <ScalarProperty Name="id" ColumnName="idproduct" />
-            </EndProperty>
-            <EndProperty Name="USERS">
+            <EndProperty Name="USER">
               <ScalarProperty Name="id" ColumnName="iduser" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="LIST_IMG" TypeName="nguyenvancudbModel.LIST_IMG" StoreEntitySet="LIST_IMG">
-            <EndProperty Name="IMG">
-              <ScalarProperty Name="id" ColumnName="idImg" />
             </EndProperty>
             <EndProperty Name="product">
               <ScalarProperty Name="id" ColumnName="idproduct" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -1347,7 +1423,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>

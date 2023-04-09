@@ -9,9 +9,9 @@
     <link href="Styles/sweetalert.css" rel="stylesheet" />
 </head>
 <body>
+    <script src="Scripts/jquery-3.0.0.min.js"></script>
     <script src="Scripts/sweetalert.min.js"></script>
     <asp:PlaceHolder ID="AdmindPHD" runat="server" />
-    <script src="Scripts/jquery-3.0.0.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
 </body>
 </html>

@@ -34,10 +34,12 @@ namespace nguyenvancu.Models
         public DbSet<detailproduct> detailproducts { get; set; }
         public DbSet<historycart> historycarts { get; set; }
         public DbSet<IMG> IMGs { get; set; }
+        public DbSet<LIST_IMG> LIST_IMG { get; set; }
         public DbSet<menu> menus { get; set; }
         public DbSet<product> products { get; set; }
         public DbSet<property> properties { get; set; }
         public DbSet<rank> ranks { get; set; }
+        public DbSet<sysdiagram> sysdiagrams { get; set; }
         public DbSet<USER> USERS { get; set; }
     }
 }

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using nguyenvancu.Models;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
@@ -17,7 +19,7 @@ namespace nguyenvancu
 
         protected void Session_Start(object sender, EventArgs e)
         {
-
+            Session.Timeout = 30;
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)
@@ -37,12 +39,28 @@ namespace nguyenvancu
 
         protected void Session_End(object sender, EventArgs e)
         {
-
+            List<IMG> list_imgs = Session["list_imgs"] as List<IMG>;
+            foreach (IMG item in list_imgs)
+            {
+                File.Delete(Server.MapPath($"/IMG/product_img/{item.link}"));
+            }
+            Session.Remove("contents");
+            Session.Remove("products");
+            Session.Remove("listdetailproduc");
+            Session.Remove("list_imgs");
         }
 
         protected void Application_End(object sender, EventArgs e)
         {
-
+            List<IMG> list_imgs =Session["list_imgs"] as List<IMG>;
+            foreach (IMG item in list_imgs)
+            {
+                File.Delete(Server.MapPath($"/IMG/product_img/{item.link}"));
+            }
+            Session.Remove("contents");
+            Session.Remove("products");
+            Session.Remove("listdetailproduc");
+            Session.Remove("list_imgs");
         }
     }
 }

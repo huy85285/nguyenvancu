@@ -85,6 +85,7 @@
     <Content Include="Content\rcs.css" />
     <Content Include="Global.asax" />
     <Content Include="IMG\695-1800x900.jpg" />
+    <Content Include="IMG\err.jpg" />
     <Content Include="Layer\Admin\acceptlogin.ascx" />
     <Content Include="Layer\Admin\accept\body.ascx" />
     <Content Include="Layer\Admin\accept\bodycontent\changepass.ascx" />
@@ -96,6 +97,7 @@
     <Content Include="Layer\Admin\accept\nav.ascx" />
     <Content Include="Layer\Admin\accept\sidebar.ascx" />
     <Content Include="Layer\Admin\login.ascx" />
+    <Content Include="Models\data.sql" />
     <Content Include="Models\nguyenvancudb.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>nguyenvancudb.Context.cs</LastGenOutput>
@@ -343,6 +345,9 @@
     <Compile Include="Models\IMG.cs">
       <DependentUpon>nguyenvancudb.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\LIST_IMG.cs">
+      <DependentUpon>nguyenvancudb.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\menu.cs">
       <DependentUpon>nguyenvancudb.tt</DependentUpon>
     </Compile>
@@ -370,6 +375,9 @@
     <Compile Include="Models\rank.cs">
       <DependentUpon>nguyenvancudb.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>nguyenvancudb.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\USER.cs">
       <DependentUpon>nguyenvancudb.tt</DependentUpon>
     </Compile>
@@ -394,7 +402,9 @@
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="IMG\product_img\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

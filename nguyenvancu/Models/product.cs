@@ -21,7 +21,6 @@ namespace nguyenvancu.Models
             this.detailhistorycarts = new HashSet<detailhistorycart>();
             this.detailproducts = new HashSet<detailproduct>();
             this.USERS = new HashSet<USER>();
-            this.IMGs = new HashSet<IMG>();
         }
     
         public int id { get; set; }
@@ -34,6 +33,7 @@ namespace nguyenvancu.Models
         public Nullable<int> idmenu { get; set; }
         public Nullable<int> idcompany { get; set; }
         public string idADMINSLASTMDF { get; set; }
+        public Nullable<int> id_list_img { get; set; }
     
         public virtual ADMIN ADMIN { get; set; }
         public virtual ICollection<cart> carts { get; set; }
@@ -42,8 +42,8 @@ namespace nguyenvancu.Models
         public virtual CONTENT CONTENT { get; set; }
         public virtual ICollection<detailhistorycart> detailhistorycarts { get; set; }
         public virtual ICollection<detailproduct> detailproducts { get; set; }
+        public virtual LIST_IMG LIST_IMG { get; set; }
         public virtual menu menu { get; set; }
         public virtual ICollection<USER> USERS { get; set; }
-        public virtual ICollection<IMG> IMGs { get; set; }
     }
 }

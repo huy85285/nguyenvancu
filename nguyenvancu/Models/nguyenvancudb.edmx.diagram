@@ -4,44 +4,47 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1e2b9dc3c10a4bf1867eaf300174bf27" Name="Diagram1" ZoomLevel="72">
-        <EntityTypeShape EntityType="nguyenvancudbModel.ADMIN" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="nguyenvancudbModel.cart" Width="1.5" PointX="12" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="nguyenvancudbModel.COMMENT" Width="1.5" PointX="12" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="nguyenvancudbModel.company" Width="1.5" PointX="7.5" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="nguyenvancudbModel.CONTENT" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="nguyenvancudbModel.detailhistorycart" Width="1.5" PointX="12" PointY="11.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="nguyenvancudbModel.detailproduct" Width="1.5" PointX="15" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="nguyenvancudbModel.historycart" Width="1.5" PointX="17.25" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="nguyenvancudbModel.IMG" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="nguyenvancudbModel.menu" Width="1.5" PointX="7.5" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="nguyenvancudbModel.product" Width="1.5" PointX="9.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="nguyenvancudbModel.property" Width="1.5" PointX="12.75" PointY="2.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="nguyenvancudbModel.rank" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="nguyenvancudbModel.USER" Width="1.5" PointX="15" PointY="3.125" IsExpanded="true" />
-        <AssociationConnector Association="nguyenvancudbModel.FK_ADMINS_ADMINS" ManuallyRouted="false" />
-        <AssociationConnector Association="nguyenvancudbModel.FK_ADMINS_CONTENT" ManuallyRouted="false" />
-        <AssociationConnector Association="nguyenvancudbModel.FK_ADMINS_product" ManuallyRouted="false" />
-        <AssociationConnector Association="nguyenvancudbModel.FK_Img_ADMINS" ManuallyRouted="false" />
-        <AssociationConnector Association="nguyenvancudbModel.FK_rank_ADMINS" ManuallyRouted="false" />
-        <AssociationConnector Association="nguyenvancudbModel.FK_product_cart" ManuallyRouted="false" />
-        <AssociationConnector Association="nguyenvancudbModel.FK_user_cart" ManuallyRouted="false" />
-        <AssociationConnector Association="nguyenvancudbModel.FK_product_COMMENT" ManuallyRouted="false" />
-        <AssociationConnector Association="nguyenvancudbModel.FK_USER_COMMENT" ManuallyRouted="false" />
-        <AssociationConnector Association="nguyenvancudbModel.FK_company_product" ManuallyRouted="false" />
-        <AssociationConnector Association="nguyenvancudbModel.FK_CONTENT_company" ManuallyRouted="false" />
-        <AssociationConnector Association="nguyenvancudbModel.FK_Img_company" ManuallyRouted="false" />
-        <AssociationConnector Association="nguyenvancudbModel.FK_CONTENT_product" ManuallyRouted="false" />
-        <AssociationConnector Association="nguyenvancudbModel.FK_historycart_detailhistorycart" ManuallyRouted="false" />
-        <AssociationConnector Association="nguyenvancudbModel.FK_product_detailhistorycart" ManuallyRouted="false" />
-        <AssociationConnector Association="nguyenvancudbModel.FK_product_detailproduct" ManuallyRouted="false" />
-        <AssociationConnector Association="nguyenvancudbModel.FK_properties_detailproduct" ManuallyRouted="false" />
-        <AssociationConnector Association="nguyenvancudbModel.FK_user_historycart" ManuallyRouted="false" />
-        <AssociationConnector Association="nguyenvancudbModel.FK_Img_USERS" ManuallyRouted="false" />
-        <AssociationConnector Association="nguyenvancudbModel.FK_menu_menu" ManuallyRouted="false" />
-        <AssociationConnector Association="nguyenvancudbModel.FK_menu_product" ManuallyRouted="false" />
-        <AssociationConnector Association="nguyenvancudbModel.history" ManuallyRouted="false" />
-        <AssociationConnector Association="nguyenvancudbModel.LIST_IMG" ManuallyRouted="false" />
+      <Diagram DiagramId="1e2b9dc3c10a4bf1867eaf300174bf27" Name="Diagram1" ZoomLevel="71">
+        <EntityTypeShape EntityType="nguyenvancudbModel.ADMIN" Width="1.5" PointX="5.25" PointY="6.875" />
+        <EntityTypeShape EntityType="nguyenvancudbModel.cart" Width="1.5" PointX="14.25" PointY="8.25" />
+        <EntityTypeShape EntityType="nguyenvancudbModel.COMMENT" Width="1.5" PointX="19.5" PointY="8.125" />
+        <EntityTypeShape EntityType="nguyenvancudbModel.company" Width="1.5" PointX="9.75" PointY="8.125" />
+        <EntityTypeShape EntityType="nguyenvancudbModel.CONTENT" Width="1.5" PointX="7.5" PointY="8" />
+        <EntityTypeShape EntityType="nguyenvancudbModel.detailhistorycart" Width="1.5" PointX="14.25" PointY="5.25" />
+        <EntityTypeShape EntityType="nguyenvancudbModel.detailproduct" Width="1.5" PointX="14.25" PointY="11.25" />
+        <EntityTypeShape EntityType="nguyenvancudbModel.historycart" Width="1.5" PointX="19.5" PointY="11.125" />
+        <EntityTypeShape EntityType="nguyenvancudbModel.IMG" Width="1.5" PointX="3" PointY="7.625" />
+        <EntityTypeShape EntityType="nguyenvancudbModel.LIST_IMG" Width="1.5" PointX="0.75" PointY="8.125" />
+        <EntityTypeShape EntityType="nguyenvancudbModel.menu" Width="1.5" PointX="9.75" PointY="3.875" />
+        <EntityTypeShape EntityType="nguyenvancudbModel.product" Width="1.5" PointX="12" PointY="6.625" />
+        <EntityTypeShape EntityType="nguyenvancudbModel.property" Width="1.5" PointX="12" PointY="13.375" />
+        <EntityTypeShape EntityType="nguyenvancudbModel.rank" Width="1.5" PointX="3" PointY="4.375" />
+        <EntityTypeShape EntityType="nguyenvancudbModel.sysdiagram" Width="1.5" PointX="0.875" PointY="0.75" />
+        <EntityTypeShape EntityType="nguyenvancudbModel.USER" Width="1.5" PointX="17.25" PointY="7.125" />
+        <AssociationConnector Association="nguyenvancudbModel.FK_ADMINS_ADMINS" />
+        <AssociationConnector Association="nguyenvancudbModel.FK_ADMINS_CONTENT" />
+        <AssociationConnector Association="nguyenvancudbModel.FK_ADMINS_product" />
+        <AssociationConnector Association="nguyenvancudbModel.FK_Img_ADMINS" />
+        <AssociationConnector Association="nguyenvancudbModel.FK_rank_ADMINS" />
+        <AssociationConnector Association="nguyenvancudbModel.FK_product_cart" />
+        <AssociationConnector Association="nguyenvancudbModel.FK_user_cart" />
+        <AssociationConnector Association="nguyenvancudbModel.FK_product_COMMENT" />
+        <AssociationConnector Association="nguyenvancudbModel.FK_USER_COMMENT" />
+        <AssociationConnector Association="nguyenvancudbModel.FK_company_product" />
+        <AssociationConnector Association="nguyenvancudbModel.FK_CONTENT_company" />
+        <AssociationConnector Association="nguyenvancudbModel.FK_Img_company" />
+        <AssociationConnector Association="nguyenvancudbModel.FK_CONTENT_product" />
+        <AssociationConnector Association="nguyenvancudbModel.FK_historycart_detailhistorycart" />
+        <AssociationConnector Association="nguyenvancudbModel.FK_product_detailhistorycart" />
+        <AssociationConnector Association="nguyenvancudbModel.FK_product_detailproduct" />
+        <AssociationConnector Association="nguyenvancudbModel.FK_properties_detailproduct" />
+        <AssociationConnector Association="nguyenvancudbModel.FK_user_historycart" />
+        <AssociationConnector Association="nguyenvancudbModel.FK_Img_USERS" />
+        <AssociationConnector Association="nguyenvancudbModel.FK_list_img_Img" />
+        <AssociationConnector Association="nguyenvancudbModel.FK_list_img_product" />
+        <AssociationConnector Association="nguyenvancudbModel.FK_menu_menu" />
+        <AssociationConnector Association="nguyenvancudbModel.FK_menu_product" />
+        <AssociationConnector Association="nguyenvancudbModel.history" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
