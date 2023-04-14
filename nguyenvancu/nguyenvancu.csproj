@@ -139,6 +139,7 @@
     <Content Include="Models\nguyenvancudb.edmx.diagram">
       <DependentUpon>nguyenvancudb.edmx</DependentUpon>
     </Content>
+    <Content Include="layout.Master" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
@@ -317,6 +318,12 @@
     </Compile>
     <Compile Include="Layer\Admin\login.ascx.designer.cs">
       <DependentUpon>login.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="layout.Master.cs">
+      <DependentUpon>layout.Master</DependentUpon>
+    </Compile>
+    <Compile Include="layout.Master.designer.cs">
+      <DependentUpon>layout.Master</DependentUpon>
     </Compile>
     <Compile Include="Models\ADMIN.cs">
       <DependentUpon>nguyenvancudb.tt</DependentUpon>
