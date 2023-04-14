@@ -7,13 +7,25 @@
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/rcs.css" rel="stylesheet" />
+    <link href="Styles/sweetalert.css" rel="stylesheet" />
 </head>
 <body>
+    <script src="Scripts/jquery-3.0.0.min.js"></script>
+    <%--//heading--%>
+
     <form id="form1" runat="server">
         <div>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            <asp:ContentPlaceHolder ID="content" runat="server">
             </asp:ContentPlaceHolder>
         </div>
     </form>
+    <%--//footer--%>
+
+    <script src="Scripts/bootstrap.bundle.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/sweetalert.min.js"></script>
+
 </body>
 </html>
