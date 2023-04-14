@@ -404,6 +404,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="IMG\product_img\" />
+    <Folder Include="IMG\user\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

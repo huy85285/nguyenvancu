@@ -14,7 +14,7 @@
         <EntityTypeShape EntityType="nguyenvancudbModel.detailproduct" Width="1.5" PointX="14.25" PointY="11.25" />
         <EntityTypeShape EntityType="nguyenvancudbModel.historycart" Width="1.5" PointX="19.5" PointY="11.125" />
         <EntityTypeShape EntityType="nguyenvancudbModel.IMG" Width="1.5" PointX="3" PointY="7.625" />
-        <EntityTypeShape EntityType="nguyenvancudbModel.LIST_IMG" Width="1.5" PointX="0.75" PointY="8.125" />
+        <EntityTypeShape EntityType="nguyenvancudbModel.LIST_IMG" Width="1.5" PointX="0.625" PointY="10.875" />
         <EntityTypeShape EntityType="nguyenvancudbModel.menu" Width="1.5" PointX="9.75" PointY="3.875" />
         <EntityTypeShape EntityType="nguyenvancudbModel.product" Width="1.5" PointX="12" PointY="6.625" />
         <EntityTypeShape EntityType="nguyenvancudbModel.property" Width="1.5" PointX="12" PointY="13.375" />
