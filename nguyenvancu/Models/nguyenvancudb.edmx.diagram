@@ -19,7 +19,6 @@
         <EntityTypeShape EntityType="nguyenvancudbModel.product" Width="1.5" PointX="12" PointY="6.625" />
         <EntityTypeShape EntityType="nguyenvancudbModel.property" Width="1.5" PointX="12" PointY="13.375" />
         <EntityTypeShape EntityType="nguyenvancudbModel.rank" Width="1.5" PointX="3" PointY="4.375" />
-        <EntityTypeShape EntityType="nguyenvancudbModel.sysdiagram" Width="1.5" PointX="0.875" PointY="0.75" />
         <EntityTypeShape EntityType="nguyenvancudbModel.USER" Width="1.5" PointX="17.25" PointY="7.125" />
         <AssociationConnector Association="nguyenvancudbModel.FK_ADMINS_ADMINS" />
         <AssociationConnector Association="nguyenvancudbModel.FK_ADMINS_CONTENT" />

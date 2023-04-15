@@ -2,9 +2,6 @@ USE [nguyenvancudb]
 GO
 INSERT [dbo].[ADMINS] ([id], [passwords], [passwords_salt], [lastname], [firstname], [addressid], [phone], [email], [idrank], [date_create], [admin_create], [is_active], [idImg]) VALUES (N'ok', 0x2C65A312CEA884283074B513E0C1512D4B9676D9DA9FB0FBA2B12CC81C68E9E6, 0xB9EEAB0032946D92EEDC5DB2E568A370, N'Võ Thanh', N'Huy', N'q10', N'0988803850', N'vothanhhuytruc@gmail.com', NULL, NULL, NULL, 1, NULL)
 GO
-SET IDENTITY_INSERT [dbo].[CONTENT] ON 
-GO
-INSERT [dbo].[CONTENT] ([id], [title], [texts], [IDADMINS]) VALUES (2, NULL, N'.', N'ok')
 GO
 SET IDENTITY_INSERT [dbo].[CONTENT] OFF
 GO

@@ -155,16 +155,6 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="names" Type="nvarchar" MaxLength="20" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
         <EntityType Name="USERS">
           <Key>
             <PropertyRef Name="id" />
@@ -497,7 +487,6 @@
           <EntitySet Name="product" EntityType="Self.product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="properties" EntityType="Self.properties" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="rank" EntityType="Self.rank" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_ADMINS_ADMINS" Association="Self.FK_ADMINS_ADMINS">
             <End Role="ADMINS" EntitySet="ADMINS" />
@@ -619,7 +608,6 @@
           <EntitySet Name="products" EntityType="nguyenvancudbModel.product" />
           <EntitySet Name="properties" EntityType="nguyenvancudbModel.property" />
           <EntitySet Name="ranks" EntityType="nguyenvancudbModel.rank" />
-          <EntitySet Name="sysdiagrams" EntityType="nguyenvancudbModel.sysdiagram" />
           <EntitySet Name="USERS" EntityType="nguyenvancudbModel.USER" />
           <AssociationSet Name="FK_ADMINS_ADMINS" Association="nguyenvancudbModel.FK_ADMINS_ADMINS">
             <End Role="ADMIN" EntitySet="ADMINS" />
@@ -902,16 +890,6 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="names" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ADMINS" Relationship="nguyenvancudbModel.FK_rank_ADMINS" FromRole="rank" ToRole="ADMIN" />
-        </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="USER">
           <Key>
@@ -1369,17 +1347,6 @@
               <MappingFragment StoreEntitySet="rank">
                 <ScalarProperty Name="names" ColumnName="names" />
                 <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="nguyenvancudbModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

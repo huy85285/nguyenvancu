@@ -321,6 +321,7 @@
     </Compile>
     <Compile Include="layout.Master.cs">
       <DependentUpon>layout.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="layout.Master.designer.cs">
       <DependentUpon>layout.Master</DependentUpon>
@@ -346,6 +347,7 @@
     <Compile Include="Models\detailproduct.cs">
       <DependentUpon>nguyenvancudb.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Dulieu_Dao.cs" />
     <Compile Include="Models\historycart.cs">
       <DependentUpon>nguyenvancudb.tt</DependentUpon>
     </Compile>
@@ -373,6 +375,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>nguyenvancudb.edmx</DependentUpon>
     </Compile>
+    <Compile Include="App_Data\password.cs" />
     <Compile Include="Models\product.cs">
       <DependentUpon>nguyenvancudb.tt</DependentUpon>
     </Compile>
@@ -382,13 +385,9 @@
     <Compile Include="Models\rank.cs">
       <DependentUpon>nguyenvancudb.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>nguyenvancudb.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\USER.cs">
       <DependentUpon>nguyenvancudb.tt</DependentUpon>
     </Compile>
-    <Compile Include="App_Data\password.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

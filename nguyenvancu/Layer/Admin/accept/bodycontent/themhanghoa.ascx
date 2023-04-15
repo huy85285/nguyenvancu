@@ -7,21 +7,23 @@
     <asp:RequiredFieldValidator ValidationGroup="err1" ID="RequiredFieldValidator2" runat="server" ErrorMessage="Mục này không để rỗng" Text="*" ControlToValidate="txtnames"></asp:RequiredFieldValidator>
   </div>
   <div class="row">
-    <label class="col-12 col-md-4 m-0" for="txtgia">Giá niêm yết</label>
-    <asp:TextBox class="col col-md-8 m-0" ID="txtgia" runat="server" placeholder="Giá niêm yết"/>
+    <label class="col-12 col-md-4 m-0" for="txtgia">Giá niêm yết(Đơn vị 1.000 đồng)</label>
+    <asp:TextBox class="col-8 col-md-6 m-0" ID="txtgia" runat="server" placeholder="Giá niêm yết (Đơn vị 1.000 đồng)" TextMode="Number" />
+      <span class="col-4 col-md-2">000 đồng</span>
     <asp:RequiredFieldValidator ValidationGroup="err1" ID="RequiredFieldValidator1" runat="server" ErrorMessage="Mục này không để rỗng" Text="*" ControlToValidate="txtgia"></asp:RequiredFieldValidator>
-      <asp:RangeValidator ID="RangeValidator2" ValidationGroup="err1" ControlToValidate="txtgia" runat="server" ErrorMessage="Số nguyên dương" Text="*" MaximumValue="9999999" MinimumValue="1" Type="Integer"></asp:RangeValidator>
+      <asp:RangeValidator ID="RangeValidator2" ValidationGroup="err1" ControlToValidate="txtgia" runat="server" ErrorMessage="Số nguyên dương" Text="*" MaximumValue="9999999" MinimumValue="1" Type="Double"></asp:RangeValidator>
   </div>
   <div class="row">
     <label class="col-4" for="chkispromotion">Giảm giá</label>
       <asp:CheckBox ID="chkispromotion" class="col" Text="" runat="server" Checked="false"/>
   </div>
   <div class="row">
-    <label class="col-12 col-md-4 m-0" for="txtgiagiam">Giá giảm</label>
-    <asp:TextBox class="col col-md-8 m-0" ID="txtgiagiam" runat="server" placeholder="Giá giảm"/>
+    <label class="col-12 col-md-4 m-0" for="txtgiagiam">Giá giảm (Đơn vị 1.000 đồng)</label>
+    <asp:TextBox class="col-8 col-md-6 m-0" ID="txtgiagiam" runat="server" placeholder="Giá giảm" TextMode="Number"/>
+      <span class="col-4 col-md-2">000 đồng</span>
           <asp:RequiredFieldValidator ValidationGroup="err1" ID="RequiredFieldValidator5" runat="server" ErrorMessage="Mục này không để rỗng" Text="*" ControlToValidate="txtgia"></asp:RequiredFieldValidator>
 
-      <asp:RangeValidator ID="RangeValidator1" ValidationGroup="err1" ControlToValidate="txtgiagiam" runat="server" ErrorMessage="Số nguyên dương" Text="*" MaximumValue="9999999" MinimumValue="1" Type="Integer"></asp:RangeValidator>
+      <asp:RangeValidator ID="RangeValidator1" ValidationGroup="err1" ControlToValidate="txtgiagiam" runat="server" ErrorMessage="Số nguyên dương" Text="*" MaximumValue="9999999" MinimumValue="0" Type="Double"></asp:RangeValidator>
   </div>
   <div class="row">
         <label class="col-12 col-md-4 m-0" for="txtnoidung">Nội dung</label>

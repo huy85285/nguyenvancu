@@ -11,9 +11,13 @@ namespace nguyenvancu
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["isTrust"] is null || (Boolean)Session["isTrust"] == false|| Request.QueryString.Get("query")== "sign_out")
+            if (Session["isTrust"] is null || (Boolean)Session["isTrust"] == false|| Request.QueryString.Get("query") == "sign_out")
             {
-                Session.Add("isTrust", false);
+                 if (Request.QueryString.Get("query") == "sign_out")
+                 {
+                    Session.Abandon();
+                    Response.Redirect(Request.Path);
+                }
                 AdmindPHD.Controls.AddAt(0, LoadControl("Layer/Admin/login.ascx"));
             }
             else

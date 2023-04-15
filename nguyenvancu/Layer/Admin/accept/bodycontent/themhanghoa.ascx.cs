@@ -121,7 +121,7 @@ namespace nguyenvancu.Layer.Admin.accept.bodycontent
         protected void LVW_list_img_ItemInserting(object sender, ListViewInsertEventArgs e)
         {
             FileUpload fileUploads = LVW_list_img.InsertItem.Controls[1] as FileUpload;
-            string link = (txtnames.Text + DateTime.Now.ToString()  + Session.SessionID + txtnames.Text).Replace(" ", "").Replace(".", "").Replace(":", "").Replace("/", "")+ fileUploads.FileName;
+            string link = (txtnames.Text + DateTime.Now.ToString()  + Session.SessionID).Replace(" ", "").Replace(".", "").Replace(":", "").Replace("/", "")+ fileUploads.FileName;
             int abc = src.IMGs.Count(x => x.link == link);
             if (abc != 0)
             {
@@ -242,18 +242,21 @@ namespace nguyenvancu.Layer.Admin.accept.bodycontent
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "Script", "swal('Đã tồn tại tên mặc hàng này!','', 'error');", true);
                 txtnames.Text = "";
+                txtnames.Focus();
                 return;
             }
-            if (txtgiagiam.Text==""||int.TryParse(txtgiagiam.Text,out giagiam))
+            if (txtgiagiam.Text==""||!int.TryParse(txtgiagiam.Text,out giagiam))
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "Script", "swal('Giá là số nguyên dương!','', 'error');", true);
-                txtnames.Text = "";
+                txtgiagiam.Text = "";
+                txtgiagiam.Focus();
                 return;
             }
-            if (txtgia.Text == "" || int.TryParse(txtgia.Text, out gia))
+            if (txtgia.Text == "" || !int.TryParse(txtgia.Text, out gia))
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "Script", "swal('Giá là số nguyên dương!','', 'error');", true);
-                txtnames.Text = "";
+                txtgia.Text = "";
+                txtgia.Focus();
                 return;
             }
             lIST_IMGs.id_user = Session["username"].ToString();
@@ -271,7 +274,7 @@ namespace nguyenvancu.Layer.Admin.accept.bodycontent
                 src.detailproducts.Add(item);
             }
             contents.texts = txtnoidung.InnerText;
-            contents.IDADMINS = Session["username"].ToString();
+            contents.ADMIN = src.ADMINS.Find(Session["username"].ToString());
             products.names = txtnames.Text;
             products.price = int.Parse(txtgia.Text);
             products.price_promotion = int.Parse(txtgiagiam.Text);
@@ -281,7 +284,27 @@ namespace nguyenvancu.Layer.Admin.accept.bodycontent
             products.CONTENT = contents;
             products.ispromotion = chkispromotion.Checked;
             products.is_available = true;
-            src.SaveChanges();
+            products.LIST_IMG = lIST_IMGs;
+            src.LIST_IMG.Add(lIST_IMGs);
+            src.CONTENTs.Add(contents);
+            src.products.Add(products);
+            if (src.SaveChanges()>0)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Script", "swal('Thêm thành công!','', 'swal');", true);
+                foreach (IMG item in list_imgs)
+                {
+                    File.Delete(MapPath($"/IMG/product_img/{item.link}"));
+                }
+                contents = null;
+                products = null;
+                listdetailproduc = null;
+                list_imgs = null;
+                txtgia.Text = "";
+                txtgiagiam.Text = "";
+                txtnames.Text = "";
+                txtnoidung.Value = "";
+            }
+            ;
         }
 
         protected void Unnamed2_Click(object sender, EventArgs e)
@@ -290,10 +313,10 @@ namespace nguyenvancu.Layer.Admin.accept.bodycontent
             {
                 File.Delete(MapPath($"/IMG/product_img/{item.link}"));
             }
-            Session.Remove("contents");
-            Session.Remove("products");
-            Session.Remove("listdetailproduc");
-            Session.Remove("list_imgs");
+            contents = null;
+            products = null;
+            listdetailproduc= null;
+            list_imgs= null;
         }
     }
 }

@@ -12,7 +12,6 @@ namespace nguyenvancu.Layer.Admin
         nguyenvancudbEntities nguyenvancuEntities = new nguyenvancudbEntities();
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
         private Boolean checkAdmin(String user, String passworda)
@@ -37,7 +36,7 @@ namespace nguyenvancu.Layer.Admin
         {
             Session["username"] = txtusername.Text;
             Session["isTrust"] = checkAdmin(txtusername.Text, txtpassword.Text);// đặt hàm check
-            Session["rank"] = "admin";//hàm kiểm tra ranh
+            Session["rank"] = "admin";//hàm kiểm tra rank
             if ((Boolean)Session["isTrust"])
             {
                 Response.Redirect(Request.RawUrl);
