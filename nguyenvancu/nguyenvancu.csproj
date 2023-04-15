@@ -82,8 +82,10 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\my.css" />
     <Content Include="Content\rcs.css" />
     <Content Include="Global.asax" />
+    <Content Include="home.aspx" />
     <Content Include="IMG\695-1800x900.jpg" />
     <Content Include="IMG\err.jpg" />
     <Content Include="Layer\Admin\acceptlogin.ascx" />
@@ -241,6 +243,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="home.aspx.cs">
+      <DependentUpon>home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="home.aspx.designer.cs">
+      <DependentUpon>home.aspx</DependentUpon>
     </Compile>
     <Compile Include="Layer\Admin\acceptlogin.ascx.cs">
       <DependentUpon>acceptlogin.ascx</DependentUpon>
