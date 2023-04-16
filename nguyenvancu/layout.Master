@@ -17,7 +17,26 @@
 <body>
     <script src="Scripts/jquery-3.0.0.min.js"></script>
     <%--//heading--%>
+    <div class="topbar hidden-xs">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-5 col-md-5 col-sm-6 hidden-xs">
+				<div class="conatct_top hidden-xs">
+					Bạn cần hỗ trợ:&nbsp;<a href="tel:02871086979">02871086979</a>
+				</div>
+			</div>
+			<div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
+				<div class="ad f-right">
+					<a class="goto_shop" href="javascript:;" title="Hệ thống cửa hàng"><i class="ion-android-pin"></i> <span class="hidden-xs">Hệ thống cửa hàng</span></a>
+				</div>
 
+				<div class="top_link_right">
+					<a href="/pages/lien-he" title="Liên hệ">Liên hệ hỗ trợ</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
     <form id="form1" runat="server">
         <div>
             <asp:ContentPlaceHolder ID="content" runat="server">
@@ -114,296 +133,299 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-                    <a href="javascript:void(0)" class="btn-showstore">Xem tất cả cửa hàng</a>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
-                    <div class="wrapdress">
-                        <p>NHÀ SÁCH NGUYỄN VĂN CỪ BÀ ĐIỂM</p>
-                        <div class="content_item">
-                            <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ : 15/4 Phan Văn Hớn , Xã Bà Điểm , Huyện Hóc Môn, TP.HCM</span></span>
-                            <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0986 211 059">SĐT : 0986 211 059</a></span>
-                            <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
+                <div id="demo" class="collapse">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
+                        <div class="wrapdress">
+                            <p>NHÀ SÁCH NGUYỄN VĂN CỪ BÀ ĐIỂM</p>
+                            <div class="content_item">
+                                <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ : 15/4 Phan Văn Hớn , Xã Bà Điểm , Huyện Hóc Môn, TP.HCM</span></span>
+                                <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0986 211 059">SĐT : 0986 211 059</a></span>
+                                <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
-                    <div class="wrapdress">
-                        <p>NHÀ SÁCH NGUYỄN VĂN CỪ BÌNH TÂN</p>
-                        <div class="content_item">
-                            <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ:  1326 Tỉnh lộ 10, Phường Tân Tạo, Quận Bình Tân, TP. HCM</span></span>
-                            <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0917 666 059">SĐT : 0917 666 059</a></span>
-                            <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
+                        <div class="wrapdress">
+                            <p>NHÀ SÁCH NGUYỄN VĂN CỪ BÌNH TÂN</p>
+                            <div class="content_item">
+                                <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ:  1326 Tỉnh lộ 10, Phường Tân Tạo, Quận Bình Tân, TP. HCM</span></span>
+                                <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0917 666 059">SĐT : 0917 666 059</a></span>
+                                <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
-                    <div class="wrapdress">
-                        <p>NHÀ SÁCH NGUYỄN VĂN CỪ CHỢ ĐỆM </p>
-                        <div class="content_item">
-                            <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ : C4/26 QL1A, KP3, TT Tân Túc, H. Bình Chánh, TP.HCM</span></span>
-                            <span><i class="ti-headphone-alt"></i><a href="tel:SĐT :0908207602">SĐT :0908207602</a></span>
-                            <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
+                        <div class="wrapdress">
+                            <p>NHÀ SÁCH NGUYỄN VĂN CỪ CHỢ ĐỆM </p>
+                            <div class="content_item">
+                                <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ : C4/26 QL1A, KP3, TT Tân Túc, H. Bình Chánh, TP.HCM</span></span>
+                                <span><i class="ti-headphone-alt"></i><a href="tel:SĐT :0908207602">SĐT :0908207602</a></span>
+                                <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
-                    <div class="wrapdress">
-                        <p>NHÀ SÁCH NGUYỄN VĂN CỪ NHÀ BÈ </p>
-                        <div class="content_item">
-                            <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ : 2302 Huỳnh Tấn Phát, X.Phú Xuân, H.Nhà Bè, TP.HCM</span></span>
-                            <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0909.883.037">SĐT : 0909.883.037</a></span>
-                            <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
+                        <div class="wrapdress">
+                            <p>NHÀ SÁCH NGUYỄN VĂN CỪ NHÀ BÈ </p>
+                            <div class="content_item">
+                                <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ : 2302 Huỳnh Tấn Phát, X.Phú Xuân, H.Nhà Bè, TP.HCM</span></span>
+                                <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0909.883.037">SĐT : 0909.883.037</a></span>
+                                <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
-                    <div class="wrapdress">
-                        <p>NHÀ SÁCH NGUYỄN VĂN CỪ TÊN LỬA </p>
-                        <div class="content_item">
-                            <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ : 893B Tỉnh Lộ 10, P. Bình Trị Đông B. Q. Bình Tân, TP.HCM
-                            </span></span>
-                            <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0938112896">SĐT : 0938112896</a></span>
-                            <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
+                        <div class="wrapdress">
+                            <p>NHÀ SÁCH NGUYỄN VĂN CỪ TÊN LỬA </p>
+                            <div class="content_item">
+                                <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ : 893B Tỉnh Lộ 10, P. Bình Trị Đông B. Q. Bình Tân, TP.HCM
+                                </span></span>
+                                <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0938112896">SĐT : 0938112896</a></span>
+                                <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
-                    <div class="wrapdress">
-                        <p>NHÀ SÁCH NGUYỄN VĂN CỪ HÀ HUY GIÁP </p>
-                        <div class="content_item">
-                            <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ: 628B Hà Huy Giáp, P. Thạnh Lộc, Quận 12, TP.HCM</span></span>
-                            <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0359 593 725">SĐT : 0359 593 725</a></span>
-                            <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
+                        <div class="wrapdress">
+                            <p>NHÀ SÁCH NGUYỄN VĂN CỪ HÀ HUY GIÁP </p>
+                            <div class="content_item">
+                                <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ: 628B Hà Huy Giáp, P. Thạnh Lộc, Quận 12, TP.HCM</span></span>
+                                <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0359 593 725">SĐT : 0359 593 725</a></span>
+                                <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
+                        <div class="wrapdress">
+                            <p>NHÀ SÁCH NGUYỄN VĂN CỪ VÕ VĂN VÂN </p>
+                            <div class="content_item">
+                                <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ: D15/19Z Võ Văn Vân, X. Vĩnh Lộc B, H. Bình Chánh, TP.HCM
+                                </span></span>
+                                <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0339 137 739 ">SĐT : 0339 137 739 </a></span>
+                                <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
+                        <div class="wrapdress">
+                            <p>NHÀ SÁCH NGUYỄN VĂN CỪ PHẠM HỮU LẦU </p>
+                            <div class="content_item">
+                                <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ : 152 Phạm Hữu Lầu, P. Phú Mỹ, Quận 7, TP.HCM</span></span>
+                                <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0962988114 - 0334184392">SĐT : 0962988114 - 0334184392</a></span>
+                                <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
+                        <div class="wrapdress">
+                            <p>NHÀ SÁCH NGUYỄN VĂN CỪ NGUYỄN VĂN QUÁ</p>
+                            <div class="content_item">
+                                <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ : 684 Nguyễn Văn Quá, P. Đông Hưng Thuận, Quận 12, TP.HCM</span></span>
+                                <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0942.835.227">SĐT : 0942.835.227</a></span>
+                                <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
+                        <div class="wrapdress">
+                            <p>NHÀ SÁCH NGUYỄN VĂN CỪ QUÁCH ĐIÊU </p>
+                            <div class="content_item">
+                                <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ : F1/63 Quách Điêu, X. Vĩnh Lộc A, H. Bình Chánh, TP.HCM</span></span>
+                                <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0786822656 ">SĐT : 0786822656 </a></span>
+                                <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
+                        <div class="wrapdress">
+                            <p>NHÀ SÁCH NGUYỄN VĂN CỪ HIỆP PHƯỚC </p>
+                            <div class="content_item">
+                                <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ : 857 Nguyễn Văn Tạo, Hiệp Phước, Nhà Bè</span></span>
+                                <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0838.428.282">SĐT : 0838.428.282</a></span>
+                                <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
+                        <div class="wrapdress">
+                            <p>NHÀ SÁCH NGUYỄN VĂN CỪ TÔ KÝ </p>
+                            <div class="content_item">
+                                <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa Chỉ : 11/1 Tô Ký, Thới Tam Thôn, Hóc Môn</span></span>
+                                <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0372975554">SĐT : 0372975554</a></span>
+                                <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
+                        <div class="wrapdress">
+                            <p>NHÀ SÁCH NGUYỄN VĂN CỪ 241  </p>
+                            <div class="content_item">
+                                <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ : 241 Nguyễn Văn Cừ, P.4, Q.5, TP.HCM
+                                </span></span>
+                                <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0937265959">SĐT : 0937265959</a></span>
+                                <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
+                        <div class="wrapdress">
+                            <p>NHÀ SÁCH NGUYÊN VĂN CỪ ÂU CƠ</p>
+                            <div class="content_item">
+                                <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ: 443 Âu Cơ, P. Phú Trung, Q. Tân Phú</span></span>
+                                <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0903 880 818">SĐT : 0903 880 818</a></span>
+                                <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
+                        <div class="wrapdress">
+                            <p>NHÀ SÁCH NGUYỄN VĂN CỪ LÊ VĂN LƯƠNG </p>
+                            <div class="content_item">
+                                <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ : 907 Lê Văn Lương, Phước Kiển, Nhà Bè</span></span>
+                                <span><i class="ti-headphone-alt"></i><a href="tel: SĐT : 0932728757">SĐT : 0932728757</a></span>
+                                <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
+                        <div class="wrapdress">
+                            <p>NHÀ SÁCH NGUYỄN VĂN CỪ PHẠM HÙNG </p>
+                            <div class="content_item">
+                                <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa Chỉ : C6/01 Ấp 4, Xã Bình Hưng, H. Bình Chánh , TP.HCM</span></span>
+                                <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0908207602">SĐT : 0908207602</a></span>
+                                <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
+                        <div class="wrapdress">
+                            <p>NHÀ SÁCH NGUYỄN VĂN CỪ QUỐC LỘ 50 </p>
+                            <div class="content_item">
+                                <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa Chỉ : E8/213 Quốc Lộ 50, Xã Phong Phú, Huyện Bình Chánh , TP.HCM</span></span>
+                                <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0909 978 244">SĐT : 0909 978 244</a></span>
+                                <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
+                        <div class="wrapdress">
+                            <p>NHÀ SÁCH NGUYỄN VĂN CỪ HƯƠNG LỘ 2</p>
+                            <div class="content_item">
+                                <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa Chỉ : 439 Hương Lộ 2, P. Bình Trị Đông, Q. Bình Tân, TP.HCM </span></span>
+                                <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0346877129">SĐT : 0346877129</a></span>
+                                <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
+                        <div class="wrapdress">
+                            <p>NHÀ SÁCH NGUYỄN VĂN CỪ ĐỒNG NAI  </p>
+                            <div class="content_item">
+                                <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ: 2A-2B KP.2 –Quốc lộ 1A -  P. Tân Hiệp – TP. Biên Hòa– Tỉnh Đồng Nai</span></span>
+                                <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0945359345">SĐT : 0945359345</a></span>
+                                <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
+                        <div class="wrapdress">
+                            <p>NHÀ SÁCH NGUYỄN VĂN CỪ DĨ AN </p>
+                            <div class="content_item">
+                                <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ : 490/20 Đường DT743, KP Chiêu Liêu, P. Tân Đông Hiệp, TX Dĩ An, Tỉnh Bình Dương</span></span>
+                                <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0909152144">SĐT : 0909152144</a></span>
+                                <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
+                        <div class="wrapdress">
+                            <p>NHÀ SÁCH NGUYỄN VĂN CỪ THUẬN AN</p>
+                            <div class="content_item">
+                                <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ:  Số 2/16 , Đường 746 - Khu Phố Bình Quới A, P. Bình Chuẩn, TX. Thuận An, Tỉnh Bình Dương
+                                </span></span>
+                                <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0908.936.773">SĐT : 0908.936.773</a></span>
+                                <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
+                        <div class="wrapdress">
+                            <p>NHÀ SÁCH NGUYỄN VĂN CỪ LÁI THIÊU</p>
+                            <div class="content_item">
+                                <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ: Số 64 Đường ĐT745, P. Lái Thiêu, TX. Thuận An, Tỉnh Bình Dương</span></span>
+                                <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0908144271">SĐT : 0908144271</a></span>
+                                <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
+                        <div class="wrapdress">
+                            <p>NHÀ SÁCH NGUYỄN VĂN CỪ THỦ DẦU MỘT</p>
+                            <div class="content_item">
+                                <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ: 243/1 Khu Phố Thạnh Hòa B, Phường An Thạnh, TX Thuận An, Tỉnh Bình Dương</span></span>
+                                <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0972124843">SĐT : 0972124843</a></span>
+                                <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
+                        <div class="wrapdress">
+                            <p>NHÀ SÁCH NGUYỄN VĂN CỪ ĐỒNG THÁP</p>
+                            <div class="content_item">
+                                <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ: 42 Nguyễn Huệ - P.2 – TP. Cao Lãnh – Tỉnh Đồng Tháp
+                                </span></span>
+                                <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0972124843">SĐT : 0972124843</a></span>
+                                <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
+                        <div class="wrapdress">
+                            <p>NHÀ SÁCH NGUYỄN VĂN CỪ CẦN THƠ </p>
+                            <div class="content_item">
+                                <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ: 160 B Đường 3/2, P.Xuân Khánh, Q.Ninh Kiều , TP Cần Thơ</span></span>
+                                <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0949 143 818">SĐT : 0949 143 818</a></span>
+                                <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
+                        <div class="wrapdress">
+                            <p>NHÀ SÁCH NGUYỄN VĂN CỪ NINH THUẬN </p>
+                            <div class="content_item">
+                                <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ:251 A Thống Nhất, P.Thanh Sơn, TP Phan Rang-Tháp Chàm, Tỉnh Ninh Thuận</span></span>
+                                <span><i class="ti-headphone-alt"></i><a href="tel:Nguyễn Tự Danh.ĐT: 0933007983">Nguyễn Tự Danh.ĐT: 0933007983</a></span>
+                                <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
+                        <div class="wrapdress">
+                            <p>NHÀ SÁCH NGUYỄN VĂN CỪ TÔ NGỌC VÂN</p>
+                            <div class="content_item">
+                                <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ : 709 Tô Ngọc Vân, P. Tam Bình, TP. Thủ Đức, TP. HCM </span></span>
+                                <span><i class="ti-headphone-alt"></i><a href="tel:ĐT: 0931 849 751">ĐT: 0931 849 751</a></span>
+                                <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
+                        <div class="wrapdress">
+                            <p>NHÀ SÁCH NGUYỄN VĂN CỪ QUẬN 7</p>
+                            <div class="content_item">
+                                <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ: 516 Huỳnh Tấn Phát – P. Bình Thuận – Q.7 – TP. HCM
+                                </span></span>
+                                <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0908767747">SĐT : 0908767747</a></span>
+                                <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
-                    <div class="wrapdress">
-                        <p>NHÀ SÁCH NGUYỄN VĂN CỪ VÕ VĂN VÂN </p>
-                        <div class="content_item">
-                            <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ: D15/19Z Võ Văn Vân, X. Vĩnh Lộc B, H. Bình Chánh, TP.HCM
-                            </span></span>
-                            <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0339 137 739 ">SĐT : 0339 137 739 </a></span>
-                            <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
-                    <div class="wrapdress">
-                        <p>NHÀ SÁCH NGUYỄN VĂN CỪ PHẠM HỮU LẦU </p>
-                        <div class="content_item">
-                            <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ : 152 Phạm Hữu Lầu, P. Phú Mỹ, Quận 7, TP.HCM</span></span>
-                            <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0962988114 - 0334184392">SĐT : 0962988114 - 0334184392</a></span>
-                            <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
-                    <div class="wrapdress">
-                        <p>NHÀ SÁCH NGUYỄN VĂN CỪ NGUYỄN VĂN QUÁ</p>
-                        <div class="content_item">
-                            <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ : 684 Nguyễn Văn Quá, P. Đông Hưng Thuận, Quận 12, TP.HCM</span></span>
-                            <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0942.835.227">SĐT : 0942.835.227</a></span>
-                            <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
-                    <div class="wrapdress">
-                        <p>NHÀ SÁCH NGUYỄN VĂN CỪ QUÁCH ĐIÊU </p>
-                        <div class="content_item">
-                            <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ : F1/63 Quách Điêu, X. Vĩnh Lộc A, H. Bình Chánh, TP.HCM</span></span>
-                            <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0786822656 ">SĐT : 0786822656 </a></span>
-                            <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
-                    <div class="wrapdress">
-                        <p>NHÀ SÁCH NGUYỄN VĂN CỪ HIỆP PHƯỚC </p>
-                        <div class="content_item">
-                            <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ : 857 Nguyễn Văn Tạo, Hiệp Phước, Nhà Bè</span></span>
-                            <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0838.428.282">SĐT : 0838.428.282</a></span>
-                            <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
-                    <div class="wrapdress">
-                        <p>NHÀ SÁCH NGUYỄN VĂN CỪ TÔ KÝ </p>
-                        <div class="content_item">
-                            <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa Chỉ : 11/1 Tô Ký, Thới Tam Thôn, Hóc Môn</span></span>
-                            <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0372975554">SĐT : 0372975554</a></span>
-                            <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
-                    <div class="wrapdress">
-                        <p>NHÀ SÁCH NGUYỄN VĂN CỪ 241  </p>
-                        <div class="content_item">
-                            <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ : 241 Nguyễn Văn Cừ, P.4, Q.5, TP.HCM
-                            </span></span>
-                            <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0937265959">SĐT : 0937265959</a></span>
-                            <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
-                    <div class="wrapdress">
-                        <p>NHÀ SÁCH NGUYÊN VĂN CỪ ÂU CƠ</p>
-                        <div class="content_item">
-                            <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ: 443 Âu Cơ, P. Phú Trung, Q. Tân Phú</span></span>
-                            <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0903 880 818">SĐT : 0903 880 818</a></span>
-                            <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
-                    <div class="wrapdress">
-                        <p>NHÀ SÁCH NGUYỄN VĂN CỪ LÊ VĂN LƯƠNG </p>
-                        <div class="content_item">
-                            <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ : 907 Lê Văn Lương, Phước Kiển, Nhà Bè</span></span>
-                            <span><i class="ti-headphone-alt"></i><a href="tel: SĐT : 0932728757">SĐT : 0932728757</a></span>
-                            <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
-                    <div class="wrapdress">
-                        <p>NHÀ SÁCH NGUYỄN VĂN CỪ PHẠM HÙNG </p>
-                        <div class="content_item">
-                            <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa Chỉ : C6/01 Ấp 4, Xã Bình Hưng, H. Bình Chánh , TP.HCM</span></span>
-                            <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0908207602">SĐT : 0908207602</a></span>
-                            <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
-                    <div class="wrapdress">
-                        <p>NHÀ SÁCH NGUYỄN VĂN CỪ QUỐC LỘ 50 </p>
-                        <div class="content_item">
-                            <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa Chỉ : E8/213 Quốc Lộ 50, Xã Phong Phú, Huyện Bình Chánh , TP.HCM</span></span>
-                            <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0909 978 244">SĐT : 0909 978 244</a></span>
-                            <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
-                    <div class="wrapdress">
-                        <p>NHÀ SÁCH NGUYỄN VĂN CỪ HƯƠNG LỘ 2</p>
-                        <div class="content_item">
-                            <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa Chỉ : 439 Hương Lộ 2, P. Bình Trị Đông, Q. Bình Tân, TP.HCM </span></span>
-                            <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0346877129">SĐT : 0346877129</a></span>
-                            <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
-                    <div class="wrapdress">
-                        <p>NHÀ SÁCH NGUYỄN VĂN CỪ ĐỒNG NAI  </p>
-                        <div class="content_item">
-                            <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ: 2A-2B KP.2 –Quốc lộ 1A -  P. Tân Hiệp – TP. Biên Hòa– Tỉnh Đồng Nai</span></span>
-                            <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0945359345">SĐT : 0945359345</a></span>
-                            <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
-                    <div class="wrapdress">
-                        <p>NHÀ SÁCH NGUYỄN VĂN CỪ DĨ AN </p>
-                        <div class="content_item">
-                            <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ : 490/20 Đường DT743, KP Chiêu Liêu, P. Tân Đông Hiệp, TX Dĩ An, Tỉnh Bình Dương</span></span>
-                            <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0909152144">SĐT : 0909152144</a></span>
-                            <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
-                    <div class="wrapdress">
-                        <p>NHÀ SÁCH NGUYỄN VĂN CỪ THUẬN AN</p>
-                        <div class="content_item">
-                            <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ:  Số 2/16 , Đường 746 - Khu Phố Bình Quới A, P. Bình Chuẩn, TX. Thuận An, Tỉnh Bình Dương
-                            </span></span>
-                            <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0908.936.773">SĐT : 0908.936.773</a></span>
-                            <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
-                    <div class="wrapdress">
-                        <p>NHÀ SÁCH NGUYỄN VĂN CỪ LÁI THIÊU</p>
-                        <div class="content_item">
-                            <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ: Số 64 Đường ĐT745, P. Lái Thiêu, TX. Thuận An, Tỉnh Bình Dương</span></span>
-                            <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0908144271">SĐT : 0908144271</a></span>
-                            <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
-                    <div class="wrapdress">
-                        <p>NHÀ SÁCH NGUYỄN VĂN CỪ THỦ DẦU MỘT</p>
-                        <div class="content_item">
-                            <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ: 243/1 Khu Phố Thạnh Hòa B, Phường An Thạnh, TX Thuận An, Tỉnh Bình Dương</span></span>
-                            <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0972124843">SĐT : 0972124843</a></span>
-                            <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
-                    <div class="wrapdress">
-                        <p>NHÀ SÁCH NGUYỄN VĂN CỪ ĐỒNG THÁP</p>
-                        <div class="content_item">
-                            <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ: 42 Nguyễn Huệ - P.2 – TP. Cao Lãnh – Tỉnh Đồng Tháp
-                            </span></span>
-                            <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0972124843">SĐT : 0972124843</a></span>
-                            <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
-                    <div class="wrapdress">
-                        <p>NHÀ SÁCH NGUYỄN VĂN CỪ CẦN THƠ </p>
-                        <div class="content_item">
-                            <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ: 160 B Đường 3/2, P.Xuân Khánh, Q.Ninh Kiều , TP Cần Thơ</span></span>
-                            <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0949 143 818">SĐT : 0949 143 818</a></span>
-                            <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
-                    <div class="wrapdress">
-                        <p>NHÀ SÁCH NGUYỄN VĂN CỪ NINH THUẬN </p>
-                        <div class="content_item">
-                            <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ:251 A Thống Nhất, P.Thanh Sơn, TP Phan Rang-Tháp Chàm, Tỉnh Ninh Thuận</span></span>
-                            <span><i class="ti-headphone-alt"></i><a href="tel:Nguyễn Tự Danh.ĐT: 0933007983">Nguyễn Tự Danh.ĐT: 0933007983</a></span>
-                            <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
-                    <div class="wrapdress">
-                        <p>NHÀ SÁCH NGUYỄN VĂN CỪ TÔ NGỌC VÂN</p>
-                        <div class="content_item">
-                            <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ : 709 Tô Ngọc Vân, P. Tam Bình, TP. Thủ Đức, TP. HCM </span></span>
-                            <span><i class="ti-headphone-alt"></i><a href="tel:ĐT: 0931 849 751">ĐT: 0931 849 751</a></span>
-                            <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 item-store">
-                    <div class="wrapdress">
-                        <p>NHÀ SÁCH NGUYỄN VĂN CỪ QUẬN 7</p>
-                        <div class="content_item">
-                            <span><i class="glyphicon glyphicon-map-marker"></i><span>Địa chỉ: 516 Huỳnh Tấn Phát – P. Bình Thuận – Q.7 – TP. HCM
-                            </span></span>
-                            <span><i class="ti-headphone-alt"></i><a href="tel:SĐT : 0908767747">SĐT : 0908767747</a></span>
-                            <span><i class="ti-timer"></i><span>7:30 AM  - 22:00 PM</span></span>
-                        </div>
-                    </div>
-                </div>
+                <button data-toggle="collapse" class="mx-auto" data-target="#demo">Xem Tất Cả Cửa hàng</button>
+
+
+
             </div>
         </div>
     </section>
