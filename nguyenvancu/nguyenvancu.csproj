@@ -110,6 +110,7 @@
     <Content Include="IMG\product_img\tìnhcũ416202384905PMtzrmczks3a4c1envht21p53et1.jpg" />
     <Content Include="IMG\product_img\tôivàquỷ416202383322PMq2qak4fh35webuke3hfxxodxbanner2.jpg" />
     <Content Include="IMG\product_img\err.jpg" />
+    <Content Include="IMG\product_img\Viếtmực4162023114047PMpntmuzbmwttpk5rfxqheumfdg9.jpg" />
     <Content Include="IMG\product_img\xuynghĩđạigia416202394453PMrkk5cf30l5y0uutos1j5wartt1.jpg" />
     <Content Include="IMG\product_img\ácquỷ416202385031PMtzrmczks3a4c1envht21p53eg1.jpg" />
     <Content Include="IMG\product_img\đạigiacailậy416202394334PMrkk5cf30l5y0uutos1j5wartg11.jpg" />
@@ -125,7 +126,6 @@
     <Content Include="Layer\Admin\accept\sidebar.ascx" />
     <Content Include="Layer\Admin\login.ascx" />
     <Content Include="menu.ascx" />
-    <Content Include="Models\data.sql" />
     <Content Include="Models\nguyenvancudb.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>nguyenvancudb.Context.cs</LastGenOutput>
@@ -136,7 +136,7 @@
       <DependentUpon>nguyenvancudb.edmx</DependentUpon>
       <LastGenOutput>nguyenvancudb.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\source.sql" />
+    <Content Include="App_Data\source.sql" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
