@@ -29,5 +29,20 @@ namespace nguyenvancu.Models
         public virtual ICollection<menu> menu1 { get; set; }
         public virtual menu menu2 { get; set; }
         public virtual ICollection<product> products { get; set; }
+        public bool is_farther(int id)
+        {
+            if (this.id==id)
+            {
+                return true;
+            }
+            else if (this.lv==1)
+            {
+                return false;
+            }
+            else
+            {
+                return this.menu2.is_farther(id);
+            }
+        }
     }
 }

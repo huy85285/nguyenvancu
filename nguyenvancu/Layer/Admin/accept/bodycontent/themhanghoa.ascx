@@ -216,7 +216,7 @@
            <InsertItemTemplate>
                <tr>
                   <td>
-                     <asp:FileUpload ID="FileUpload1" runat="server" accept="image/*,.pdf"/>
+                     <asp:FileUpload ID="FileUpload1" runat="server" accept="image/*" />
                   </td>
                   <td>
                       <asp:Button ID="InsertButton" runat="server" CommandName="Insert" Text="Insert" />

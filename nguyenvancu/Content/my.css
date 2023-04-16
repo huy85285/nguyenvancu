@@ -7,7 +7,14 @@
 .shopaddress i {
     margin-right: 5px;
 }
-.item span p {
+.thumbnail .item span p {
     color: red;
-    font-weight:bold;
+    font-weight: bold;
+}
+.thumbnail img {
+    height:200px!important;
+    object-fit:cover;
+}
+.thumbnail .caption{
+    text-align:center;
 }

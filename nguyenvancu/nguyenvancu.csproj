@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin.aspx" />
+    <Content Include="cart.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -86,24 +87,32 @@
     <Content Include="Content\my.css" />
     <Content Include="Content\rcs.css" />
     <Content Include="Global.asax" />
-    <Content Include="Hinh_San_Pham\1.png" />
-    <Content Include="Hinh_San_Pham\2.png" />
-    <Content Include="Hinh_San_Pham\3.png" />
-    <Content Include="Hinh_San_Pham\4.png" />
-    <Content Include="Hinh_San_Pham\5.png" />
-    <Content Include="Hinh_San_Pham\6.png" />
-    <Content Include="Hinh_San_Pham\7.png" />
-    <Content Include="Hinh_San_Pham\binh001.png" />
-    <Content Include="Hinh_San_Pham\hc001.png" />
-    <Content Include="Hinh_San_Pham\hoagio001.png" />
-    <Content Include="Hinh_San_Pham\hoagio002.png" />
-    <Content Include="Hinh_San_Pham\hoagio003.png" />
-    <Content Include="Hinh_San_Pham\hoagio004.png" />
-    <Content Include="Hinh_San_Pham\hoagio005.png" />
-    <Content Include="Hinh_San_Pham\vp001.png" />
     <Content Include="home.aspx" />
     <Content Include="IMG\695-1800x900.jpg" />
     <Content Include="IMG\err.jpg" />
+    <Content Include="IMG\product_img\anhgià416202384957PMtzrmczks3a4c1envht21p53eg10.jpg" />
+    <Content Include="IMG\product_img\anhtôi416202394013PMrkk5cf30l5y0uutos1j5warttest3.jpg" />
+    <Content Include="IMG\product_img\chịtôi416202394100PMrkk5cf30l5y0uutos1j5warttest2.jpg" />
+    <Content Include="IMG\product_img\côngtybestnow416202394646PMrkk5cf30l5y0uutos1j5wartnext.png" />
+    <Content Include="IMG\product_img\giángsinhtacónhau416202385626PMtzrmczks3a4c1envht21p53eg3.jpg" />
+    <Content Include="IMG\product_img\helo416202393534PMrkk5cf30l5y0uutos1j5wartg5.jpg" />
+    <Content Include="IMG\product_img\huy416202393627PMrkk5cf30l5y0uutos1j5wartg10.jpg" />
+    <Content Include="IMG\product_img\hộithánh416202385109PMtzrmczks3a4c1envht21p53et2.jpg" />
+    <Content Include="IMG\product_img\malairútruột416202385714PMtzrmczks3a4c1envht21p53eg8.jpg" />
+    <Content Include="IMG\product_img\mario416202385814PMtzrmczks3a4c1envht21p53eg6.jpg" />
+    <Content Include="IMG\product_img\minhkiệtmất416202393711PMrkk5cf30l5y0uutos1j5wartg9.jpg" />
+    <Content Include="IMG\product_img\mónquànoel416202385554PMtzrmczks3a4c1envht21p53eg2.jpg" />
+    <Content Include="IMG\product_img\ngườiiutôi416202385346PMtzrmczks3a4c1envht21p53eg8.jpg" />
+    <Content Include="IMG\product_img\ngườithứ3416202385243PMtzrmczks3a4c1envht21p53eg4.jpg" />
+    <Content Include="IMG\product_img\ngườiấy416202384805PMtzrmczks3a4c1envht21p53eg11.jpg" />
+    <Content Include="IMG\product_img\toánrờirạc416202385429PMtzrmczks3a4c1envht21p53eg11.jpg" />
+    <Content Include="IMG\product_img\trườnghọctôi416202393831PMrkk5cf30l5y0uutos1j5wartt2.jpg" />
+    <Content Include="IMG\product_img\tìnhcũ416202384905PMtzrmczks3a4c1envht21p53et1.jpg" />
+    <Content Include="IMG\product_img\tôivàquỷ416202383322PMq2qak4fh35webuke3hfxxodxbanner2.jpg" />
+    <Content Include="IMG\product_img\err.jpg" />
+    <Content Include="IMG\product_img\xuynghĩđạigia416202394453PMrkk5cf30l5y0uutos1j5wartt1.jpg" />
+    <Content Include="IMG\product_img\ácquỷ416202385031PMtzrmczks3a4c1envht21p53eg1.jpg" />
+    <Content Include="IMG\product_img\đạigiacailậy416202394334PMrkk5cf30l5y0uutos1j5wartg11.jpg" />
     <Content Include="Layer\Admin\acceptlogin.ascx" />
     <Content Include="Layer\Admin\accept\body.ascx" />
     <Content Include="Layer\Admin\accept\bodycontent\changepass.ascx" />
@@ -159,7 +168,6 @@
       <DependentUpon>nguyenvancudb.edmx</DependentUpon>
     </Content>
     <Content Include="layout.Master" />
-    <Content Include="Hinh_San_Pham\Thumbs.db" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
@@ -258,6 +266,13 @@
     </Compile>
     <Compile Include="Admin.aspx.designer.cs">
       <DependentUpon>Admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cart.aspx.cs">
+      <DependentUpon>cart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cart.aspx.designer.cs">
+      <DependentUpon>cart.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -443,7 +458,7 @@
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="IMG\product_img\" />
+    <Folder Include="Hinh_San_Pham\" />
     <Folder Include="IMG\user\" />
   </ItemGroup>
   <PropertyGroup>

@@ -7,7 +7,7 @@
             <span class="navbar-toggler-icon"></span>
          </button>
     <div class="collapse navbar-collapse" id="collapsibleSidebar" >
-        <ul class="navbar-collapse row  navbar-light mb-0 " style="border-radius:10px; min-width:230px;background-color:rgb(105 55 13);transition:0.2s">
+        <ul class="navbar-collapse row  navbar-light mb-0 " style="border-radius:10px; min-width:230px;background-color:#343a40;transition:0.2s">
                <li class="col">
                   <a class="nav-link" href="#" style="color:whitesmoke;min-width:200px">Bán hàng</a>
                </li>

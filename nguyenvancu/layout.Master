@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="Content/my.css" rel="stylesheet" />
-
+    <link href="Styles/sweetalert.css" rel="stylesheet" />
+    <script src="Scripts/sweetalert.min.js"></script>
 </head>
 <body>
     <script src="Scripts/jquery-3.0.0.min.js"></script>
@@ -21,25 +22,34 @@
     <div class="topbar hidden-xs">
 	<div class="container">
 		<div class="row">
-			<div class="col-auto hidden-md">
+			<div class="col-auto">
 				<div class="conatct_top hidden-xs">
-					Bạn cần hỗ trợ:&nbsp;<a href="tel:02871086979">02871086979</a>
+					Bạn cần hỗ trợ: <a href="tel:02871086979">02871086979</a>
 				</div>
 			</div>
-			<div class="col-auto ml-auto">
-				<div class="ad f-right">
-					<a class="goto_shop" href="javascript:;" title="Hệ thống cửa hàng"><i class="ion-android-pin"></i> <span class="hidden-xs">Hệ thống cửa hàng</span></a>
+			<div class="col-auto ml-auto row hidden-md">
+				<div class="col-auto">
+					<a class="goto_shop" href="#" title="Hệ thống cửa hàng"><i class="ion-android-pin"></i> <span class="hidden-xs">Hệ thống cửa hàng</span></a>|
 				</div>
-
-				<div class="top_link_right">
-					<a href="/pages/lien-he" title="Liên hệ">Liên hệ hỗ trợ</a>
+				<div class="col-auto">
+					<a href="#" title="Liên hệ">Liên hệ hỗ trợ</a>
 				</div>
 			</div>
 		</div>
+        <div class="row">
+              <img class="row" src="//theme.hstatic.net/200000301138/1000730318/14/logo.png?v=426" alt="logo Khám Phá Nguồn Tri Thức Bất Tận">
+            <div class="ml-auto my-auto">
+                <a href="/cart.aspx"class="btn btn-success">
+                <i class="fa-solid fa-cart-shopping btn-success"></i>
+                    giỏ hàng</a>
+            </div>
+        </div>
 	</div>
 </div>
     <form id="form1" runat="server">
         <div>
+            <asp:ContentPlaceHolder ID="menucontent" runat="server">
+            </asp:ContentPlaceHolder>
             <asp:ContentPlaceHolder ID="content" runat="server">
             </asp:ContentPlaceHolder>
         </div>

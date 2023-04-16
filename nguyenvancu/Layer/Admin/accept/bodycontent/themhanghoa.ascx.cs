@@ -18,8 +18,6 @@ namespace nguyenvancu.Layer.Admin.accept.bodycontent
         List<IMG> list_imgs;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
                 if (Session["contents"] is null)
                 {
                     Session["contents"] = new Models.CONTENT();
@@ -36,7 +34,7 @@ namespace nguyenvancu.Layer.Admin.accept.bodycontent
                 {
                     Session["list_imgs"] = new List<IMG>();
                 }
-            }
+            
             src = new nguyenvancudbEntities();
             products= Session["products"] as product;
             contents = Session["contents"] as Models.CONTENT;
@@ -284,17 +282,19 @@ namespace nguyenvancu.Layer.Admin.accept.bodycontent
             products.CONTENT = contents;
             products.ispromotion = chkispromotion.Checked;
             products.is_available = true;
+            if (list_imgs.Count==0)
+            {
+                products.LIST_IMG = null;
+            }
+            else
+            {
             products.LIST_IMG = lIST_IMGs;
+            }
             src.LIST_IMG.Add(lIST_IMGs);
             src.CONTENTs.Add(contents);
             src.products.Add(products);
             if (src.SaveChanges()>0)
             {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "Script", "swal('Thêm thành công!','', 'swal');", true);
-                foreach (IMG item in list_imgs)
-                {
-                    File.Delete(MapPath($"/IMG/product_img/{item.link}"));
-                }
                 contents = null;
                 products = null;
                 listdetailproduc = null;

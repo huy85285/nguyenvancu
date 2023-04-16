@@ -12,6 +12,10 @@ namespace nguyenvancu
         protected void Page_Load(object sender, EventArgs e)
         {
 
+            if (!IsPostBack)
+            {
+                menucontent.Controls.Add(LoadControl("~/menu.ascx"));
+            }
         }
     }
 }
