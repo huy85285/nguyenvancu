@@ -12,10 +12,8 @@ namespace nguyenvancu
 {
     public class Global : System.Web.HttpApplication
     {
-
         protected void Application_Start(object sender, EventArgs e)
         {
-
         }
 
         protected void Session_Start(object sender, EventArgs e)
@@ -58,18 +56,6 @@ namespace nguyenvancu
 
         protected void Application_End(object sender, EventArgs e)
         {
-            if (!(Session["list_imgs"] is null))
-            {
-                List<IMG> list_imgs = Session["list_imgs"] as List<IMG>;
-                foreach (IMG item in list_imgs)
-                {
-                    File.Delete(HostingEnvironment.MapPath($"/IMG/product_img/{item.link}"));
-                }
-                Session.Remove("contents");
-                Session.Remove("products");
-                Session.Remove("listdetailproduc");
-                Session.Remove("list_imgs");
-            }
         }
     }
 }

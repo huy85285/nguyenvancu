@@ -12,13 +12,13 @@
     background-color: #fff;
 }
 
-    .menu1 > div,
-    .menu3 > div {
-        padding: 3px;
-        position: relative;
-    }
+        .menu1 > div,
+        .menu3 > div, .menu4 > div {
+            padding: 3px;
+            position: relative;
+        }
 
-.menu > div {
+.menu > div{
     position: static;
 }
 
@@ -41,13 +41,10 @@
     top: 0;
     left: 100%;
 }
-.menu1 > div:hover >.menu2 {
-    display: flex !important;
-    min-width:600px;
-}
 .menu1 > div:hover > .menu2,
 .menu3 > div:hover > .menu4 {
-    display: block;
+    display: flex !important;
+    min-width:600px;
 }
 .menu_on_top {
     position: absolute;
@@ -74,18 +71,21 @@
     z-index: 60;
     min-width:100px;
 }
-/* set thuộc tính  */
+    .menu4 div {
+        z-index: 60;
+        position: relative;
+    }
+    /* set màu chữ*/
+    .menu1 a{
+    }
 
-.menu1 {
+.menu2 a{
 }
 
-.menu2 {
+.menu3 a{
 }
 
-.menu3 {
-}
-
-.menu4 {
+.menu4 a{
 }
 /*
     source test
