@@ -7,3 +7,7 @@
 .shopaddress i {
     margin-right: 5px;
 }
+.item span p {
+    color: red;
+    font-weight:bold;
+}
