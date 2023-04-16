@@ -7,6 +7,7 @@
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <link href="Content/rcs.css" rel="stylesheet" />
     <link href="Styles/sweetalert.css" rel="stylesheet" />
+    <link href="Content/menulv4.css" rel="stylesheet" />
 </head>
 <body>
     <script src="Scripts/jquery-3.0.0.min.js"></script>

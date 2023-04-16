@@ -16,6 +16,7 @@ namespace nguyenvancu.Layer.Admin.accept.bodycontent
         {
             if (!IsPostBack)
             {
+                menucontent.Controls.Add(LoadControl("~/menu.ascx"));
                 DropDownList1.SelectedIndex = 0;
                 DropDownList2.SelectedIndex = 0;
                 DropDownList3.SelectedIndex = 0;

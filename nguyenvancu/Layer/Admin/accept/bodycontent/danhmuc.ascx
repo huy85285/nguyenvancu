@@ -15,6 +15,10 @@
     <form runat="server">
         <div class="container-fluid">
             <div class="row">
+                demo menu
+                <asp:PlaceHolder runat="server" ID="menucontent"></asp:PlaceHolder>
+            </div>
+            <div class="row">
                 <div class="col-lg-6 col-md-12 p-3 border-info border">
                     <asp:Panel ID="Panel1" runat="server" DefaultButton="btnmenu1add">
                         <div class="text-center m-1">Menu cấp 1</div>
