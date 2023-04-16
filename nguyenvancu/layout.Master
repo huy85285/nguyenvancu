@@ -18,26 +18,25 @@
     <script src="Scripts/jquery-3.0.0.min.js"></script>
     <%--//heading--%>
     <div class="topbar hidden-xs">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-5 col-md-5 col-sm-6 hidden-xs">
-                    <div class="conatct_top hidden-xs">
-                        Bạn cần hỗ trợ:&nbsp;<a href="tel:02871086979">02871086979</a>
-                    </div>
-                </div>
-                <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
-                    <div class="ad f-right">
-                        <a class="goto_shop" href="javascript:;" title="Hệ thống cửa hàng"><i class="ion-android-pin"></i><span class="hidden-xs">Hệ thống cửa hàng</span></a>
-                    </div>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-5 col-md-5 col-sm-6 hidden-xs">
+				<div class="conatct_top hidden-xs">
+					Bạn cần hỗ trợ:&nbsp;<a href="tel:02871086979">02871086979</a>
+				</div>
+			</div>
+			<div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
+				<div class="ad f-right">
+					<a class="goto_shop" href="javascript:;" title="Hệ thống cửa hàng"><i class="ion-android-pin"></i> <span class="hidden-xs">Hệ thống cửa hàng</span></a>
+				</div>
 
-                    <div class="top_link_right">
-                        <a href="/pages/lien-he" title="Liên hệ">Liên hệ hỗ trợ</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
+				<div class="top_link_right">
+					<a href="/pages/lien-he" title="Liên hệ">Liên hệ hỗ trợ</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
     <form id="form1" runat="server">
         <div>
             <asp:ContentPlaceHolder ID="content" runat="server">
