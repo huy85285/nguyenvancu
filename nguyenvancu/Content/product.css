@@ -1,0 +1,15 @@
+﻿body {
+}
+
+
+.container a img {
+    width: 500px;
+    height: 400px;
+   
+}
+
+product_info_image hidden-xs a img{
+    width:500px;
+    height:400px;
+}
+
